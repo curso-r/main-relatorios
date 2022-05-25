@@ -3,15 +3,15 @@
 - Teoria: (1h20)
     - Pacote R Markdown e exemplos do que conseguimos fazer com extensões
     - Markdown
-    - Adicionar conteúdo com código: chunks, e inline code.
+    - Adicionar conteúdo com código: chunks.
     - Outputs básicos: HTML, PDF, Word
-    - Relatórios simples e efetivos: o pacote {prettydoc}
+    - Usando templates: exemplo com o pacote {prettydoc}
 
 - Prática: (1h final)
-    - Criar um relatório do 0; alterar informações básicas no YAML; mostrar alterando o conteúdo básico com markdown; adicionar chunk com código; adicionar inline code; knit para os três outputs básicos e prettydoc
+    - Criar um relatório do 0; alterar informações básicas no YAML; mostrar alterando o conteúdo básico com markdown; adicionar chunk com código;  knit para os três outputs básicos e prettydoc
     
 ### Comentário @jtrecenti:
-
+Qual é a motivação?
 - Acho que já temos isso feito, mas nos slides vale comentar em quais situações do dia-a-dia vale a pena usar RMarkdown (com exemplos):
    - listas de exercícios da escola / faculdade
    - no trabalho: enviar relatórios periódicos por e-mail
@@ -27,15 +27,23 @@
     - Opções de chunk
     - Adicionar figuras e gráficos
     - Adicionar tabelas
-    - Adicionar referências
+    - adicionar inline code;
     - RMarkdown com parâmetros
+    - Rmd pensando em produtos acadêmicos: 
+        - Adicionar referências (.bib)
+        - formatar referências (.csl)
+        - Referências cruzadas (bookdown)
+
 
 - Prática: (1h25)
-    - Continuar relatório feito na aula 1: adicionar uma figura externa, um gráfico, uma tabela. Adicionar referências. Adicionar parâmetros. Se der tempo, mostrar como gerar o relatório com rmarkdown::render(), e se der tempo também, mostrar o como usar render() + parâmetros + purrr (exemplo avançado).
-
+    - Continuar relatório feito na aula 1: adicionar uma figura externa, um gráfico, uma tabela. Adicionar referências. Adicionar parâmetros.  adicionar inline code;
+    
+- Colocar uma fórmula no template de atividade
+    
 ### Comentário @jtrecenti:
 - Comentar mathjax sem muito detalhe
 - Acho que seria legal comentar de referências cruzadas com bookdown::html_document2
+
 
 ## Aula 3: Compartilhamento e Customização
 - Dinâmica: essa aula mistura teoria e prática de cada tópico
@@ -49,6 +57,8 @@
 
 ### Comentário @jtrecenti:
 - Na parte de customização de relatórios word e ppt, seria legal fornecer alguns exemplos já prontos (e.g. documento em formato ABNT, apresentação com logo da empresa)
+
+- buscar um exemplo legal de pptx de documento para usar no reference
 
 ## Aula 4: Extensões 
 - Dinâmica: definição e exemplo para cada pacote

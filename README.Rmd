@@ -30,35 +30,18 @@ knitr::kable(CursoRutils:::listar_turmas_recentes("relatorios"))
 
 
 ```{r eval=FALSE, include=TRUE}
-# Principal
-principal <- c(
+pacotes <- c(
   "tidyverse",
   "xaringan",
-  "flexdashboard",
-  "xaringanthemer",
-  "prettydoc",
-  "patchwork",
-  "fs",
-  "janitor"
+  "rticles",
+  "bookdown",
+  "pagedown",
+  "flextable",
+  "officedown",
+  "janitor",
+  "prettydoc"
 )
 install.packages(principal)
-
-# Pacotes instalados via GitHub
-if (!require(remotes)) install.packages("remotes")
-remotes::install_github("abjur/abjData")
-remotes::install_github("cienciadedatos/dados")
-
-# esses pacotes são para os showcases funcionarem
-showcase <- c(
-  "pagedown",
-  "officedown",
-  "rticles",
-  "flextable",
-  ## não instale o webshot ainda; vamos instalar em aula
-  # "webshot",
-  "officedown",  "bookdown"
-)
-install.packages(showcase)
 ```
 
 

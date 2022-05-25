@@ -897,7 +897,62 @@ class: center, middle
 # .blue[Compartilhando os resultados]
 
 ---
-To do
+
+## Compartilhando os resultados
+
+Podemos facilmente enviar os arquivos PDF e `.docx` via e-mail. Porém e no caso do output ser um HTML?
+
+No HTML, muitas vezes o arquivo depende de outros arquivos (ou seja, ele não é auto-contido).
+
+Podemos usar uma opção que permite fazer um arquivo autocontido, sem dependências (porém isso deixará seu arquivo grande, e também pode demorar para ser gerado):
+
+```{{r}}
+---
+output:
+  html_document:
+    self_contained: true
+---
+```
+
+https://bookdown.org/yihui/rmarkdown/html-document.html
+
+---
+
+## Disponibilizar na internet
+
+Outra forma é disponibilizar o HTML na internet, com serviços como Netlify Drop ou GitHub ! 
+
+&gt; DICA IMPORTANTE: Busque nomear seus arquivos como `index.html`
+
+### Disponibilizar utilizando o Netlify Drop
+
+- https://app.netlify.com/drop
+
+- Gratuito
+
+- Para quem não usa GitHub.
+
+- Podemos subir uma pasta com todo o conteúdo dentro.
+
+- Mais fácil, mas não dá pra ficar atualizando o material depois de um jeito fácil.
+
+---
+
+## Disponibilizar utilizando o GitHub
+
+- Gratuito
+
+- Precisa saber o básico de Git e GitHub
+
+- O projeto precisa estar vinculado a um repositório no GitHub
+
+- No repositório do pacote, clique em **Settings**, e no menu lateral escolha **Pages**
+
+- Em **Source**, selecione a sua branch principal (provavelmente chama de **main** ou **master**), escolha o diretório onde seus arquivos estão: `docs/` ou `root/` (a pasta raíz) e clique em **save**.
+
+
+- O endereço do site será `https://seu-username.github.io/nome-repositorio/caminho-do-arquivo.html`  
+
 
 ---
 class: center, middle
@@ -905,7 +960,33 @@ class: center, middle
 # .blue[Extensões]
 
 ---
-To do
+
+## pagedown
+
+---
+
+## xaringan
+
+---
+
+## rticles
+
+---
+
+## flexdashboard
+
+---
+
+## bookdown
+
+
+---
+class: center, middle
+
+# .blue[E o futuro? Quarto!]
+
+https://quarto.org/
+
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -913,7 +994,8 @@ To do
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"self-contained": false
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

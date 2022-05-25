@@ -1,4 +1,0 @@
-exemplos_de_aula
-dados/
-main-relatorios.Rproj
-exercicios
