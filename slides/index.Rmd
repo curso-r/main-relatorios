@@ -154,6 +154,36 @@ knitr::include_graphics(c("https://github.com/allisonhorst/stats-illustrations/b
 
 ### https://discourse.curso-r.com/
 
+
+---
+class: center, middle, inverse
+
+# Trabalho final
+
+
+---
+
+# Trabalho final
+
+- Neste curso, utilizaremos uma base de dados para criar um produto para comunicar uma análise de dados (relatório, apresentação, site, etc). 
+
+- O trabalho final de vocês será criar um também!
+
+  - Escolha uma base de dados que você ache interessante!
+  
+  - Defina um objetivo da análise.
+  
+  - Defina um público alvo (a comunicação depende de quem vai consumir a análise).
+  
+  - Defina qual formato você quer gerar.
+  
+  - Faça sua análise :) depois de cada aula, será possível avançar no trabalho. Tragam dúvidas nas monitorias. Isso será a tarefa semanal de vocês. Também teremos leituras adicionais.
+  
+  - Entrega: Uma pasta com o projeto `.Rproj`, o código da análise (em .Rmd ou .qmd), o arquivo final (seja PDF, HTML, Word, etc), e quaisquer outros arquivos necessários. Se quiser, deixe em um repositório público no GitHub e envie o link.
+  
+- Pontos de avaliação: Reprodutibilidade, efetividade da comunicação, atributos estéticos, engajamento na leitura.
+
+
 ---
 class: center, middle, inverse
 
