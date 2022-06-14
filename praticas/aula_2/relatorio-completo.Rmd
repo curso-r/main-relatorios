@@ -1,0 +1,193 @@
+---
+title: "Aula 2"
+author: "Curso-R"
+date: 'Junho de 2022'
+# essa só quando for falar de referencia cruzada
+output: bookdown::html_document2
+# essa parte a seguir só quando falar de params
+params: 
+  estado: "MG"
+# essa parte a seguir só quando no rmd academico
+bibliography: 
+  - referencias/packages.bib
+  - referencias/references.bib
+csl:
+  - template/abnt.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r pacotes}
+library(dplyr)
+library(janitor)
+library(readxl)
+library(ggplot2)
+```
+
+```{r download-data}
+# # url para baixar os dados
+# url_request <- "https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem/ExportarExcel"
+# 
+# # cria a pasta dados (se não existir)
+# fs::dir_create("dados")
+# 
+# # funcão que baixa os dados
+# httr::POST(url_request, httr::write_disk("dados/sigbm.xlsx"))
+```
+
+```{r load-data}
+# ler os dados baixados
+sigbm <- read_xlsx("dados/sigbm.xlsx", skip = 4) |>
+  clean_names()
+```
+
+# Chunks de código em R
+
+```{r include=FALSE}
+sigbm |> glimpse()
+```
+
+<!-- - Slide opções de chunk: alterar as opções dos chunks já criados, experimentar e ir clicando em knit para ver o resultado final. -->
+
+<!-- - Slide opções de globais de chunk: alterar as opções do chunk global (linha 10). -->
+
+# Adicionar imagens {#addimg}
+
+## Com knitr:
+
+```{r, out.width="70%", fig.align='center', fig.cap="Logo da ANM"}
+knitr::include_graphics("img/logo-anm.png")
+```
+
+## Com visual Markdown editor:
+
+<center>
+
+![Logo da ANM](img/logo-anm.png){width="80%"}
+
+</center>
+
+# Adicionar gráficos
+
+```{r, dpi=300, out.width="90%", fig.align='center'}
+sigbm |> 
+  count(inserida_na_pnsb, sort = TRUE) |> 
+  ggplot() +
+  geom_col(aes(y = inserida_na_pnsb, x = n))
+
+```
+
+## Tabelas
+
+```{r}
+tab_top_uf <- sigbm |> 
+  count(uf, sort = TRUE) |> 
+  slice(1:5)
+```
+
+-   Com knitr:
+
+```{r }
+tab_top_uf |> 
+  knitr::kable()
+```
+
+-   Com reactable:
+
+```{r }
+tab_top_uf |> 
+  reactable::reactable()
+```
+
+-   Com DT:
+
+```{r }
+tab_top_uf |> 
+  DT::datatable()
+```
+
+-   Com flextable:
+
+```{r }
+tab_top_uf |> 
+  flextable::flextable()
+```
+
+-   Com gt:
+
+```{r }
+tab_top_uf |> 
+  gt::gt()
+```
+
+## Inline code
+
+A base sigbm possui `r nrow(sigbm)` barragens.
+
+## Parâmetros
+
+```{r}
+params$estado
+```
+
+```{r}
+sigbm_filtrado <- sigbm |> 
+  filter(uf == params$estado)
+```
+
+Nesta seção, o relatório se trata do estado `r params$estado`.
+Existem `r nrow(sigbm_filtrado)` barragens cadastradas no SIGBM neste estado.
+
+```{r fig-dpa, dpi=300, out.width="90%", fig.align='center', fig.cap="Dano potencial associado"}
+sigbm_filtrado |> 
+  count(dano_potencial_associado, sort = TRUE) |> 
+  ggplot() +
+  geom_col(aes(y = dano_potencial_associado, x = n))
+```
+
+```{r}
+sigbm_filtrado |> 
+  count(minerio_principal, sort = TRUE) |> 
+  slice(1:10) |> 
+  flextable::flextable()
+```
+
+## Gerar para todos os estados! Iteração de parametros.
+
+Exemplo em um script .R!
+
+# Elementos úteis para textos acadêmicos!
+
+## Equações
+
+$${\text{Média}=\frac {a_{1}+a_{2}+\cdots +a_{n}}{n}}$$
+
+## Adicionar referências
+
+Neste script, usamos os pacotes: tidyverse [@R-tidyverse], knitr [@R-knitr]...
+
+- Mostrar também com um DOI: <https://doi.org/10.1590/0103-11042020E217>
+[@silva2020]
+
+## Referência cruzada
+
+<!-- - alterar  o YAML -->
+
+Na figura  \@ref(fig:fig-dpa), verificamos que ...
+
+No capítulo \@ref(addimg), ...
+
+## Referências
+
+```{r}
+pacotes <- c("tidyverse", "knitr")
+knitr::write_bib(pacotes, # pacotes para gerar a referencia
+                 # local para salvar o arquivo
+                 'referencias/packages.bib')
+```
