@@ -3,7 +3,15 @@ title: "Aula 2"
 author: "Curso-R"
 date: 'Junho de 2022'
 # essa só quando for falar de referencia cruzada
-output: bookdown::html_document2
+output: 
+  prettydoc::html_pretty:
+    theme: "architect"
+# output: bookdown::html_document2
+# output: 
+#   cleanrmd::html_document_clean:
+#     theme: almond  
+#     mathjax: default
+#     use_fontawesome: true
 # essa parte a seguir só quando falar de params
 params: 
   estado: "MG"
