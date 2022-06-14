@@ -183,6 +183,13 @@ Na figura  \@ref(fig:fig-dpa), verificamos que ...
 
 No capítulo \@ref(addimg), ...
 
+## Usar child
+
+```{r child="exemplo-child.Rmd"}
+
+```
+
+
 ## Referências
 
 ```{r}
