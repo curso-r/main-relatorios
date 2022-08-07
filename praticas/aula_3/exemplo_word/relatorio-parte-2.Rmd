@@ -1,0 +1,127 @@
+---
+title: "Relatórios sobre Barragens em `r params$estado`"
+author: "Curso-R"
+date: 'Junho de 2022'
+output: 
+  bookdown::word_document2:
+    reference_docx: template/word_template.docx
+    toc: TRUE
+params:
+  estado: "MG"
+bibliography: 
+  - referencias/fromdoi.bib
+  - referencias/packages.bib
+  - referencias/zotero.bib
+csl: template/abnt.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE
+)
+```
+
+```{r pacotes}
+library(dplyr)
+library(janitor)
+library(readxl)
+library(ggplot2)
+```
+
+```{r download-data}
+# # url para baixar os dados
+# url_request <- "https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem/ExportarExcel"
+# 
+# # cria a pasta dados (se não existir)
+# fs::dir_create("dados")
+# 
+# # funcão que baixa os dados
+# httr::POST(url_request, httr::write_disk("dados/sigbm.xlsx"))
+```
+
+```{r load-data}
+# ler os dados baixados
+sigbm <- read_xlsx("dados/sigbm.xlsx", skip = 4) |>
+  clean_names()
+```
+
+```{r}
+# params$estado
+
+sigbm_filtrado <- sigbm |> 
+  filter(uf == params$estado)
+```
+
+# Introdução {#introducao}
+
+A base sigbm possui `r nrow(sigbm)` barragens cadastradas no Brasil.
+No estado de `r params$estado`, existem `r nrow(sigbm_filtrado)` barragens cadastradas.
+Este relatório foi desenvolvido utilizando o R [@R-core]. Os pacotes usados foram: ggplot2 [@R-ggplot2]..... usando o tidyverse [@wickhamTidyData2014]
+
+
+Na figura \@ref(fig:grafico-dpa), vemos que .....
+
+```{r grafico-dpa, fig.cap="Gráfico de DPA"}
+sigbm_filtrado |> 
+  count(dano_potencial_associado, sort = TRUE) |> 
+  ggplot() +
+  aes(y = dano_potencial_associado, x = n) +
+  geom_col() +
+  labs(title = glue::glue("Barragens em {params$estado}"))
+```
+
+-   Quantidade de barragens em `r params$estado`, por minério principal:
+
+```{r}
+sigbm_filtrado |> 
+  count(minerio_principal, sort = TRUE) |> 
+  slice(1:10) |> 
+  # rename(`Minério principal` = minerio_principal,
+  #        Quantidade = n) |> 
+  knitr::kable(col.names = c("Minério principal", "Quantidade de barragens"))
+```
+
+# Exemplo de equação
+
+\usepackage{amsmath}
+
+$$
+1+1=2 \tag{5.23} \label{eq:special}
+$$
+
+Uma referencia cruzada a equação $\eqref{eq:special}$.
+
+# Como adicionar Referencias?
+
+[@segbarragem2020]
+
+
+
+
+@tidyverse2019	
+
+
+[@tidyverse2019; @R-tidyverse]
+
+
+Em -@tidyverse2019, Hadley e colaboradores...	 
+<!-- # ESSE ESTÁ ESQUISITO, PQ? -->
+
+
+
+Segundo Hadley Wickham e colaboradores [-@tidyverse2019]
+
+No capítulo \@ref(introducao), vimos que ....
+
+
+
+```{r}
+# knitr::write_bib(file = "referencias/packages.bib")
+knitr::write_bib(
+  x = c("ggplot2", "knitr", "dplyr", "readxl", "janitor", "knitr", "glue", "tidyverse"),
+  file = "referencias/packages.bib")
+```
+
+## Referências
