@@ -18,7 +18,7 @@
 }
 
 body{
-font-family: 'Futura Serif', Palatino, serif;
+ font-family: Palatino, sans-serif;
 }
 
 * {
@@ -162,6 +162,6 @@ a, a > code {
 
 
 .blue{
-  color:#6495ed; 
+  color:#6495ed;
   font-weight: bold;
 }

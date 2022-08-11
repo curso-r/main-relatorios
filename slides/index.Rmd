@@ -11,7 +11,7 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       self-contained: false
-      ratio: 16:9
+      ratio: 16:10
 # knit: pagedown::chrome_print      
 ---
 
@@ -71,7 +71,7 @@ class: middle, center
 
 
 ```{r, echo=FALSE, out.width="70%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
-knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/master/openscapes/environmental-data-science-r4ds-general.png?raw=true")
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/main/openscapes/environmental-data-science-r4ds-general.png?raw=true")
 ```
 
 
@@ -80,13 +80,8 @@ knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blo
 class: middle, center
 
 ```{r, echo=FALSE, out.width="70%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
-knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/rmarkdown_wizards.png?raw=true")
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/rmarkdown_wizards.png?raw=true")
 ```
-
-
-
-
-
 
 
 ---
@@ -111,7 +106,7 @@ No final, você poderá...
 .pull-right[
 
 ```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
-knitr::include_graphics(c("https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/reproducibility_court.png?raw=true"))
+knitr::include_graphics(c("https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=true"))
 
 ```
 
@@ -160,10 +155,9 @@ class: center, middle, inverse
 
 # Trabalho final
 
-
 ---
 
-# Trabalho final
+## Trabalho final
 
 - Neste curso, utilizaremos uma base de dados para criar um produto para comunicar uma análise de dados (relatório, apresentação, site, etc). 
 
@@ -173,11 +167,11 @@ class: center, middle, inverse
   
   - Defina um objetivo da análise.
   
-  - Defina um público alvo (a comunicação depende de quem vai consumir a análise).
+  - Defina um público alvo: a comunicação depende de quem vai ver.
   
   - Defina qual formato você quer gerar.
   
-  - Faça sua análise :) depois de cada aula, será possível avançar no trabalho. Tragam dúvidas nas monitorias. Isso será a tarefa semanal de vocês. Também teremos leituras adicionais.
+  - Faça sua análise depois de cada aula, será possível avançar no trabalho. Tragam dúvidas nas monitorias. Isso será a tarefa semanal de vocês. Também teremos leituras adicionais.
   
   - Entrega: Uma pasta com o projeto `.Rproj`, o código da análise (em .Rmd ou .qmd), o arquivo final (seja PDF, HTML, Word, etc), e quaisquer outros arquivos necessários. Se quiser, deixe em um repositório público no GitHub e envie o link.
   
@@ -220,7 +214,7 @@ class: center, middle, inverse
 
 .pull-right[
 ```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
-knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/reproducibility_court.png?raw=true")
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=true")
 
 ```
 ]
@@ -296,9 +290,21 @@ exemplos_rmd %>%
 
 ---
 
+# Próxima geração: Quarto
+
+O RMarkdown não deixará de existir, mas hoje temos uma alternativa mais poderosa, chamada Quarto.
+
+Para pessoas que usam R, a vantagem do Quarto é apenas ter algumas facilidades a mais (como *autocomplete* de parâmetros no RStudio) e novos templates.
+
+No entanto, por ser um software __independente de R__, o Quarto exporta todas as qualidades do RMarkdown para outras linguagens, especialmente Python, Julia e JavaScript.
+
+Na aula de hoje, __mostraremos exemplos em RMarkdown e Quarto__. A partir da segunda aula, __utilizaremos apenas Quarto__.
+
+---
+
 # Estrutura
 
-Todo arquivo RMarkdown terá a seguinte estrutura:
+Todo arquivo RMarkdown/Quarto terá a seguinte estrutura:
 
 --
 
@@ -330,7 +336,7 @@ title: "Relatório maravilhoso"
 .pull-right[
 
 ````md
-*Texto em __RMarkdown__!
+*Texto em __RMarkdown/Quarto__!
 ````
 
 ]
@@ -356,12 +362,13 @@ title: "Relatório maravilhoso"
 
 --
 
-> Dependendo do formato de saída, o RMarkdown pode precisar ser dividido em vários arquivos ou precisar de arquivos adicionais.
+> Dependendo do formato de saída, o documento pode precisar ser dividido em vários arquivos ou precisar de arquivos adicionais.
 
 ---
 
 # Sintaxe Markdown
 
+RMarkdown é Markdown + código. Então, precisamos entender Markdown!
 
 Principais marcadores utilizados para formatar texto:
 
@@ -383,10 +390,10 @@ Material de consulta: [Livro: Ciência de Dados em R - Seção sobre Markdown](h
 
 ---
 
-# Visual Markdown Editor
+# Visual Editor
 
 .pull-left[
-- As versões mais recentes do RStudio permitem usar o Visual Markdown Editor.
+- As versões mais recentes do RStudio permitem usar o Visual Editor.
 
 
 Leitura indicada:
@@ -405,17 +412,12 @@ knitr::include_graphics("https://www.rstudio.com/blog/rstudio-v1-4-preview-visua
 ]
 
 
-
-
-
-
-
 ---
 
 # Chunks - Campos de código
 
 
-- Em um arquivo R Markdown, precisamos escrever nossos códigos dentro dos *chunks*. Para inserir um chunk, utilize o atalho `CTRL + ALT + I`.
+- Em um arquivo `.qmd` ou `.Rmd`, precisamos escrever nossos códigos dentro dos *chunks*. Para inserir um chunk, utilize o atalho `CTRL + ALT + I`.
 
 - É possível adicionar campos de código utilizando a seguinte sintaxe:
 
@@ -432,9 +434,9 @@ Material de consulta: [Livro: Ciência de Dados em R - Seção sobre R Markdown]
 
 ---
 
-# Yaml
+# YAML
 
-- Os arquivos .Rmd começam com códigos em yaml.
+- Os arquivos `.qmd` ou `.Rmd` começam com códigos em yaml/yml.
 
 - Esse "bloco" de código é delimitado por `---`.
 
@@ -454,12 +456,46 @@ output: xaringan::moon_reader
 
 # Knit! 
 
-- Para gerarmos o relatório na extensão desejada, precisamos *renderizá-lo*, isto é, transformar o arquivo R Markdown em um PDF, HTML ou Word. 
+- Para gerarmos o relatório na extensão desejada, precisamos *renderizá-lo*, isto é, transformar o arquivo `.qmd` ou `.Rmd` em um PDF, HTML ou Word. 
 
-- Isso pode ser feito no RStudio a partir do botão `knit`, que fica logo acima do script, ou pelo atalho `CTRL + SHIFT + K`.
+- Isso pode ser feito no RStudio a partir dos botões `Knit` (.Rmd) ou `Render` (.qmd), que fica logo acima do script, ou pelo atalho `CTRL + SHIFT + K`.
 
-```{r, echo=FALSE, fig.align="center", out.width="100%", fig.cap="Fonte: <a href='https://rmarkdown.rstudio.com/articles_integration.html'>RStudio</a>"}
-knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/ac50fc099900e8dd42fb3858cc9b54b00c3a26a6/25493/articles/images/rmdint-dropdown.png")
+.pull-left[
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/knit-rmd.png")
+```
+
+]
+
+
+.pull-right[
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/knit-quarto.png")
+```
+
+]
+
+
+---
+
+# O que acabamos de fazer
+
+```{r}
+#| out-width: 60%
+#| fig-cap: "Fontr: Blog do Yihui Xie"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("https://bookdown.org/yihui/rmarkdown-cookbook/images/workflow.png")
+```
+
+```{r}
+#| out-width: 60%
+#| fig-cap: "Fonte: quarto.org"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("https://quarto.org/docs/get-started/hello/images/rstudio-qmd-how-it-works.png")
 ```
 
 
@@ -475,7 +511,7 @@ knitr::include_graphics("https://r-ladies-sao-paulo.github.io/xaringan/img/markd
 <!-- Quero usar essa imagem, mas não está claro se é liberado o uso: https://alison.netlify.app/rmd-valentine/images/rmarkdown_hedgehog_wide.png -->
 
 ---
-## Relatórios
+## Relatórios (.Rmd)
 
 
 ### HTML
@@ -491,16 +527,34 @@ output: word_document
 ```
 
 ---
+## Relatórios (.qmd)
 
-## Relatórios
 
-### PDF (com Tex)
+### HTML
+
+```{yml}
+format: html
+```
+
+### Word (.docx)
+
+```{yml}
+format: docx
+```
+
+
+---
+
+## Relatórios (.Rmd)
+
+### PDF (com $\TeX$)
+
 
 ```{yml}
 output: pdf_document
 ```
 
-Caso não tenha o TeX:
+Caso não tenha o $\TeX$:
 
 ```{r eval=FALSE, include=TRUE}
 tinytex::install_tinytex()
@@ -509,6 +563,21 @@ tinytex::install_tinytex()
 
 ---
 
+## Relatórios (.qmd)
+
+### PDF (com $\TeX$)
+
+```{yml}
+format: pdf
+```
+
+Caso não tenha o $\TeX$:
+
+```{r eval=FALSE, include=TRUE}
+tinytex::install_tinytex()
+```
+
+---
 
 ## Relatórios
 
@@ -519,26 +588,40 @@ output: html_document
 knit: pagedown::chrome_print
 ```
 
-
 Ou utilize a função `pagedown::chrome_print()` em um relatório em HTML:
 
 ```{r eval=FALSE, include=TRUE}
 pagedown::chrome_print("relatorio.html")
 ```
 
+Obs: Por enquanto não existe uma alternativa Quarto a isso.
+
 ---
 
-
-## Apresentações
+## Apresentações (.Rmd)
 
 - **Powerpoint** 
 ```{yml}
 output: powerpoint_presentation
 ```
 
-- **xaringan** 
+- **HTML** 
 ```{yml}
 output: xaringan::moon_reader
+```
+
+---
+
+## Apresentações (.qmd)
+
+- **Powerpoint** 
+```{yml}
+format: pptx
+```
+
+- **HTML** 
+```{yml}
+format: revealjs
 ```
 
 ---
@@ -549,15 +632,17 @@ output: xaringan::moon_reader
 
 - O mesmo conteúdo pode ser disponibilizado em diferentes tipos de saída.
 
-- Nos metadados (`yaml`) do arquivo RMarkdown `.Rmd`, definimos a saída no parâmetro `output`.
+- Nos metadados (`yaml`) do arquivo `.Rmd` ou `.qmd`, definimos a saída no parâmetro `output`.
 
-- Mais saídas: [RStudio Formats](https://rmarkdown.rstudio.com/formats.html)
+- Mais saídas e comparação completa: 
+    - [RMarkdown](https://rmarkdown.rstudio.com/formats.html)
+    - [Quarto](https://quarto.org/docs/faq/rmarkdown.html)
 
 
 ---
 class: center, middle, inverse
 
-# Mais sobre RMarkdown...
+# Avançado e automatização
 
 ## Aula 2
 
@@ -565,38 +650,39 @@ class: center, middle, inverse
 
 ## Chunks de Código em R
 
-- Os chunks são campos onde podemos inserir código de R (ou Python, SQL,  Bash...) em um arquivo RMarkdown. 
-
+- Os chunks são campos onde podemos inserir código de R (ou Python, SQL, Bash...) em um arquivo. 
 
 - Os chunks podem ter rótulos/nomes, para identificar o conteúdo gerado.
 
-
 - Existe um atalho do teclado para criar chunks no RStudio:  `Ctrl + ALt + I`. 
 
-- Também é possível criar um chunk clicando no seguinte botão do RStudio:
-
-
-```{r echo=FALSE, out.width="90%"}
-knitr::include_graphics("img/create-chunk.png")
-```
+- Também é possível criar um chunk clicando no botão <img src='img/insert-chunk.png'> do RStudio.
 
 ---
 
 
 ## Opções de Chunk
 
-- Há uma variedade de opções de chunk que podem afetar como os chunks de código são compilados. Exemplos: 
+- Opções de chunk que podem afetar como os chunks de código são compilados. Exemplos: 
 
-- `echo=FALSE`- evita que o próprio código apareça
+- `echo: false`- evita que o próprio código apareça
 
-- `eval=FALSE` - mostra o código, mas ele não é executado
+- `eval: false` - mostra o código, mas ele não é executado
 
-- `warning=FALSE` e `message=FALSE` - oculta mensagens de avisos produzidas
+- `warning: false` e `message: false` - oculta mensagens de avisos produzidas
 
-- `out.width` - controla o a largura das figuras, gráficos, tabelas geradas (Ex: out.width = "100%")
+- `out-width` - controla o a largura das figuras, gráficos, tabelas geradas (Ex: `out-width: "100%"`)
 
-- Ex de configuração do chunk: `{r, warning=FALSE, message=FALSE}`
+- Ex de configuração do chunk
 
+````md
+```{r}`r ''`
+#| warning: false
+#| message: false
+```
+````
+
+__Obs__: O RMarkdown permite outra forma de incluir opções de chunk, mas ela não é mais recomendada.
 
 ---
 
@@ -605,7 +691,7 @@ knitr::include_graphics("img/create-chunk.png")
 
 .pull-left[
 #### Código + Resultado
-- `echo=TRUE`
+- `echo: true`
 ```{r echo=TRUE}
 nrow(mtcars)
 ```
@@ -614,13 +700,13 @@ nrow(mtcars)
 .pull-right[
 
 #### Apenas código
-- `echo=TRUE, eval=FALSE`
+- `echo: true, eval: false`
 ```{r echo=TRUE, eval=FALSE}
 nrow(mtcars)
 ```
 
 #### Apenas resultado
-- `echo=FALSE`
+- `echo: false`
 ```{r echo=FALSE}
 nrow(mtcars)
 ```
@@ -641,6 +727,8 @@ Para configurar as opções globais de chunk, modifique o código abaixo e insir
   - Conteúdo do chunk:
 `knitr::opts_chunk$set(...)`
 
+- [Alternativa com Quarto aqui](https://quarto.org/docs/computations/r.html#knitr-options)
+
 ---
 
 
@@ -651,11 +739,11 @@ Para configurar as opções globais de chunk, modifique o código abaixo e insir
 
 -  Opções de Chunk: 
 
-  - `out.width = "30%"` - Largura da imagem
+  - `out-width: "30%"` - Largura da imagem
 
-  - `fig.align = 'center'`  - Alinhamento da imagem
+  - `fig-align: center`  - Alinhamento da imagem
 
-  - `fig.cap="Logo R"` - Legenda da imagem 
+  - `fig-cap: "Logo R"` - Legenda da imagem 
 ]
 
 .pull-right[
@@ -678,9 +766,6 @@ Sugestão de leitura: [Opções do knitr](https://yihui.name/knitr/options/#chun
 - Você pode adicionar um chunk de código com o código que gera o gráfico.
 
 - Controle como isso aparecerá no relatório usando as opções de chunk.
-
-
-
 
 ---
 
@@ -719,7 +804,7 @@ As colunas presentes na base são
 ---
 class: teoria
 
-### Parâmetros
+## Parâmetros
 
 
 .pull-left[
@@ -734,7 +819,7 @@ Ex:
 title: "Relatório com Parâmetros"
 author: "Beatriz"
 date: "Fevereiro de 2022"
-output: html_document
+output: html
 params:
   mes: 12
   ano: 2021
@@ -758,7 +843,7 @@ Recomendação de leitura: [R Markdown: The Definitive Guide - Chapter 15 Parame
 ---
 class: teoria
 
-### Adicionar equações
+## Adicionar equações
 
 - Podemos adicionar equações em LaTeX. Dica: [Equações em LaTeX no Mettzer](https://app.mettzer.com/latex), ou pesquise no google por "Equações em LaTeX".
   
@@ -780,13 +865,13 @@ $${\text{Média}=\frac {a_{1}+a_{2}+\cdots +a_{n}}{n}}$$
 ---
 class: teoria
 
-### Adicionar referências
+## Adicionar referências
 
 - Podemos adicionar referências no texto usando um arquivo `.bib`. 
 
 - Podemos gerar um arquivo `.bib` usando um gerenciador de referências. Eu utilizo o [Zotero](https://www.zotero.org/), a extensão [Better Bibtex for Zotero](https://retorque.re/zotero-better-bibtex/installation/) e a extensão do Zotero para o navegador.
 
-- No arquivo `.bib`, cada referência deverá ter um rótulo, que usaremos para citar dentro do arquivo `.Rmd`, precedido de `@`.
+- No arquivo `.bib`, cada referência deverá ter um rótulo, que usaremos para citar dentro do arquivo `.qmd`, precedido de `@`.
 
 - Devemos indicar os arquivos `.bib` no YAML do relatório. Exemplo em um caso com 2 arquivos diferentes:
 
@@ -798,7 +883,7 @@ bibliography: [referencias/packages.bib, referencias/zotero.bib]
 ---
 class: teoria
 
-### Citar o R - Função citation()
+## Citar o R - Função citation()
 
 .smaller[
 ```
@@ -830,7 +915,7 @@ please cite it when using it for data analysis. See also
 ---
 class: teoria
 
-### Citar pacotes
+## Citar pacotes
 
 - Podemos gerar um `.bib` com as referências de pacotes utilizados usando a função `knitr::write_bib()`:
 
@@ -869,11 +954,9 @@ class: teoria
 
 ---
 
+## Como citar no .qmd
 
-### Como citar no .Rmd
-
-
-- Formas de usar os rótulos gerados no arquivo `.Rmd`:
+- Formas de usar os rótulos gerados no arquivo `.qmd`:
 
 ```{r echo=FALSE}
 tibble::tibble(
@@ -902,7 +985,7 @@ tibble::tibble(
 ---
 class: teoria
 
-### Formatação das referências
+## Formatação das referências
 
 - O conteúdo do arquivo `.bib` é formatado a partir de um arquivo `.csl` (Citation Style Language).
 
@@ -920,40 +1003,17 @@ csl: template/abnt.csl
   
 
 ---
-## Referências cruzadas (bookdown)
+## Referências cruzadas
 
 
-### Referência cruzada - Elementos
-
-
-- Funciona com outputs que são derivados do pacote bookdown. 
-  - Ex: `bookdown::html_document2`,  `bookdown::word_document2`
-
-- **Figuras, tabelas, equações, etc:**
+- **Figuras, tabelas, equações, seções:**
   - Usamos o rótulo do chunk (ou nome) onde a tabela ou imagem foi criada para fazer a referência cruzada. 
-    - Ex: `\@ref(fig:rotulo-da-imagem)` , `\@ref(tab:rotulo-da-tabela)`, ou `\@ref(eq:rotulo-da-equacao)`.
-    - Referência: https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html
-    
+    - Ex: `@fig-rotulo-da-imagem` , `@tab-rotulo-da-tabela`, `@eq-rotulo-da-equacao`, `@sec-rotulo-da-secao`.
 
----
-
-    
-### Referência cruzada - Capítulos/Seções
-
-
-- Funciona com outputs que são derivados do pacote bookdown. 
-  - Ex: `bookdown::html_document2`,  `bookdown::word_document2`
-    
-- **Capítulos:**
-  - Para fazer referência cruzada em capítulos/seções, devemos adicionar um rótulo para o capítulo, que deverá ser escrito logo após a cabeçalho (que delimitamos com `#`, `##`, etc). Para referenciar no texto, devemos usar `\@ref(rotulo-do-capitulo)`.
-    - Exemplo da criação do rótulo:  `# Introdução {#introducao}`
-    - Exemplo de uso no texto: `\@ref(introducao)` . 
-    - Referência: https://bookdown.org/yihui/bookdown/cross-references.html
-    
-
-
+- Para fazer referência cruzada em capítulos/seções, devemos adicionar um rótulo para o capítulo, que deverá ser escrito logo após a cabeçalho (que delimitamos com `#`, `##`, etc).
   
-
+- Obs: No RMarkdown, funciona com outputs que são derivados do pacote `{bookdown}`. Ex: `bookdown::html_document2`,  `bookdown::word_document2`
+    - Referência: https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html
 
 ---
 class: center, middle, inverse
@@ -961,7 +1021,6 @@ class: center, middle, inverse
 # Compartilhando os resultados
 
 ## Aula 3
-
 
 ---
 
@@ -975,9 +1034,9 @@ Podemos usar uma opção que permite fazer um arquivo autocontido, sem dependên
 
 ```{{r}}
 ---
-output:
-  html_document:
-    self_contained: true
+format:
+  html:
+    self-contained: true
 ---
 ```
 
@@ -1030,20 +1089,19 @@ class: center, middle, inverse
 
 ## Aula 3
 
-
 ---
 
 
-### Usar um modelo para word
+## Usar um modelo para word
 
 - Em alguns casos, somos obrigados a enviar arquivos `.docx` (ex: algumas revistas científicas apenas aceitam esse tipo de arquivo).
 
 - Podemos informar um template de arquivo word como referência. As regras de formatação serão copiadas. Não funciona perfeitamente!
 
 ```
-output: 
-  bookdown::word_document2:
-    reference_docx: template/modelo.docx
+format: 
+  word:
+    reference_doc: template/modelo.docx
 ```  
 
 ---
@@ -1056,10 +1114,10 @@ output:
 - Exemplo de YAML:
 
 ```
-output: 
-  bookdown::word_document2:
-    reference_docx: template/modelo.docx
-    number_sections: false
+format: 
+  word:
+    reference_doc: template/modelo.docx
+    number-sections: false
 bibliography: [referencias/packages.bib, referencias/zotero.bib]
 csl: template/abnt.csl
 ```  
@@ -1157,7 +1215,7 @@ class:
 
 - CSS descreve como os elementos em HTML serão apresentados.
 
-- Você pode criar estilos no seu arquivo `.Rmd`, ou também salvar em um arquivo externo. As folhas de estilo são salvas em arquivos com a extensão `.css`.
+- Você pode criar estilos no seu arquivo `.qmd`, ou também salvar em um arquivo externo. As folhas de estilo são salvas em arquivos com a extensão `.css`.
 
 - Você pode criar um arquivo CSS e reaproveitar em diversos arquivos HTML. 
 
@@ -1343,13 +1401,14 @@ class: center, middle, inverse
 
 ## Extensões
 
+- Quarto: [Quarto Guide](https://quarto.org/docs/guide/)
+    - ⚠️: muita coisa!
 
 - Relatórios:
 
   - [pagedown](https://github.com/rstudio/pagedown)
   - [rticles](https://github.com/rstudio/rticles)
   - [bookdown](https://github.com/rstudio/bookdown)
-
 
 - Apresentações:
 
@@ -1359,16 +1418,9 @@ class: center, middle, inverse
   - [flexdashboard](https://github.com/rstudio/flexdashboard) 
 
 ---
-class: center, middle
-
-# .blue[E o futuro? Quarto!]
-
-https://quarto.org/
-
-
----
 # Referências
 
+- [Site do Quarto](https://quarto.org)
 - [Site do pacote RMarkdown](https://rmarkdown.rstudio.com/)
   - [Página com diversas referências](https://rmarkdown.rstudio.com/articles.html)
 - [Folha de cola - _cheatsheet_](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf)
