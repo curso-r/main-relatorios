@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+author: "Curso-R"
+date: '2022-06-21'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r cars}
+# readxl::read_excel("../dados/sigbm.xlsx")
+# # CAMINHO CORRETO!
+# "../../dados/sigbm.xlsx"
+```
+
+
+```{r}
+readxl::read_excel(here::here("dados/sigbm.xlsx")) 
+```
+
