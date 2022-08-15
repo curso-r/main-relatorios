@@ -8,21 +8,23 @@ date: "`r  format(Sys.Date(), '%d/%m/%Y')`"
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
-
 ## Objetivos
 
-Este relatório tem como objetivo apresentar funcionalidades do R Markdown e do Quarto, utilizando dados públicos sobre barragens de mineração no Brasil.
+Este relatório tem como objetivo apresentar funcionalidades do *R Markdown* e do *Quarto*, utilizando dados públicos sobre barragens de mineração no Brasil.
+
+Os objetivos específicos da análise são:
+
+-   fazer uma tabela das barragens por estado;
+
+-   fazer um gráfico do número de barragens por categoria de dano potencial associado;
 
 ## Materiais e métodos
 
 A base de dados disponibilizada pelo [SIGBM - Sistema de Gestão de Segurança de Barragem de Mineração](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem) apresenta dados referentes à Barragens de Mineração no território brasileiro.
 
-<center>
-![](https://app.anm.gov.br/SIGBM/Content/images/anm315x66azul_r.png)
-</center><br>
+<center>![](https://app.anm.gov.br/SIGBM/Content/images/anm315x66azul_r.png)</center>
 
-
-
+<br>
 
 ```{r pacotes}
 # Carregar pacotes:
@@ -67,12 +69,11 @@ data_atualizacao_sigbm <- read_xlsx("dados/sigbm.xlsx",
 A base do SIGBM foi obtida no dia `r data_atualizacao_sigbm`, e apresentou informações referentes à `r nrow(sigbm)` barragens de mineração.
 
 ```{r tabela-top-10}
-#| tab.cap: "Dez estados brasileiros com mais barragens cadastradas no SIG-BM"
 sigbm |> 
   count(uf, sort = TRUE) |> 
   slice(1:10) |> 
   select(`Estado` = uf, `Número de barragens` = n) |> 
-  gt::gt()
+  gt::gt(caption = "Dez estados brasileiros com mais barragens cadastradas no SIG-BM")
 ```
 
 ```{r plot-dpa}
@@ -97,9 +98,5 @@ sigbm |>
   geom_col(fill = "lightblue") +
   theme_bw() +
   labs(x = "Dano potencial associado (DPA)", y = "Quantidade de barragens",
-       title = glue::glue(
-    "Dano potencial associado de barragens de mineração no Brasil"
-  ))
+       title = "Dano potencial associado de barragens de mineração no Brasil")
 ```
-
-
