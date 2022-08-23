@@ -2,7 +2,7 @@ library(quarto)
 library(purrr)
 
 # primeiro : mostrar o rmarkdown render
-caminho_qmd <- "praticas/aula_2/relatorio-completo.qmd"
+caminho_qmd <- "praticas/aula_2/pratica-2.qmd"
 
 # posso gerar do jeito que está!
 quarto::quarto_render(caminho_qmd)

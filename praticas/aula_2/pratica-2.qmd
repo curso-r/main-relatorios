@@ -1,7 +1,7 @@
 ---
 title: "Informações sobre barragens de mineração"
 format: html
-date: "Agosto de 2022"
+date: today
 author: "Curso-R e turma"
 params:
   estado: "MG"
@@ -222,33 +222,8 @@ sigbm_filtrado <- sigbm |>
 Nesta seção, o relatório se trata do estado `r params$estado`. Existem `r nrow(sigbm_filtrado)` barragens cadastradas no SIGBM neste estado.
 
 ```{r}
-#| label: fig-dpa-filtrado
-#| out-width: "90%"
-#| fig-cap: "Dano potencial associado"
-sigbm_filtrado |>
-  count(dano_potencial_associado) |>
-    mutate(
-    dano_potencial_associado = if_else(
-      dano_potencial_associado == "N/A",
-      "Não se aplica",
-      dano_potencial_associado
-    ),
-    dano_potencial_associado = factor(
-      dano_potencial_associado,
-      levels = c("Não se aplica", "Baixo", "Médio", "Alto")
-    )
-  ) |>
-  ggplot() +
-  aes(x = dano_potencial_associado, y = n) +
-  geom_col(fill = "lightblue") +
-  theme_bw() +
-  labs(x = "Dano potencial associado (DPA)", y = "Quantidade de barragens",
-       title = glue::glue("Dano potencial associado de barragens de mineração em {params$estado}"))
-```
-
-```{r}
 sigbm_filtrado |> 
-  count(minerio_principal, sort = TRUE) |> 
+  count(minerio_principal, uf, sort = TRUE) |> 
   slice(1:10) |> 
   knitr::kable()
 ```
