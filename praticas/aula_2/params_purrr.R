@@ -1,40 +1,39 @@
-# primeiro : mostrar o rmarkdown render
+library(quarto)
+library(purrr)
 
-caminho_rmd <- here::here("praticas/aula_2/relatorio-completo.Rmd")
+# primeiro : mostrar o rmarkdown render
+caminho_qmd <- "praticas/aula_2/relatorio-completo.qmd"
 
 # posso gerar do jeito que está!
-
-rmarkdown::render(caminho_rmd)
+quarto::quarto_render(caminho_qmd)
 
 # posso gerar mudando o param
-
 list(estado = "SP")
 
-rmarkdown::render(caminho_rmd,
-                  params = list(estado = "SP"))
+quarto::quarto_render(
+  caminho_qmd,
+  execute_params = list(estado = "SP")
+)
 
 # posso configurar outras coisas:
 
-rmarkdown::render(caminho_rmd,
-                  params = list(estado = "SP"),
-                  output_file = "SP.html")
+quarto::quarto_render(
+  caminho_qmd,
+  execute_params = list(estado = "SP"),
+  output_file = "praticas/aula_2/SP.html",
+  quiet = TRUE
+)
 
 # buscando UFs possíveis
-sigbm <- read_xlsx("dados/sigbm.xlsx", skip = 4) |>
-  clean_names()
+sigbm <- readxl::read_excel("praticas/aula_2/dados/sigbm.xlsx", skip = 4)
 
-sigbm$uf
+sigbm$UF
 
-unique(sigbm$uf)
+unique(sigbm$UF)
 
-estados_no_sigbm <- sort(unique(sigbm$uf))
-
+estados_no_sigbm <- sort(unique(sigbm$UF))
 
 # vamos começar a falar de purrr!!
-
-library(purrr)
-# criar a pasta caso nao exista
-fs::dir_create("praticas/aula_2/relatorios_uf")
 
 # iterar!
 # exemplo curto de purr
@@ -47,51 +46,49 @@ sqrt(3)
 vetor_que_quero_repetir <- 1:3
 
 
-purrr::map(vetor_que_quero_repetir,
-           # funcao que eu quero que seja aplicada
-           sqrt)
+purrr::map(
+  vetor_que_quero_repetir,
+  sqrt # funcao que eu quero que seja aplicada
+)
 
-purrr::map(vetor_que_quero_repetir,
-           ~ sqrt(.x))
+purrr::map(
+  vetor_que_quero_repetir,
+  ~sqrt(.x)
+)
 
+purrr::walk(
+  vetor_que_quero_repetir,
+  ~sqrt(.x)
+)
 
+purrr::walk(
+  vetor_que_quero_repetir,
+  ~print(sqrt(.x))
+)
 
 # map para o render
-map(
+purrr::map(
   estados_no_sigbm,
-  ~ rmarkdown::render(
-    caminho_rmd,
-    params = list(estado = .x),
-    output_file = glue::glue("relatorios_uf/{.x}.html")
+  ~quarto::quarto_render(
+    caminho_qmd,
+    execute_params = list(estado = .x),
+    output_file = glue::glue("praticas/aula_2/{.x}.html"),
+    quiet = TRUE
   )
 )
 
 
 # alterar o output:
-map(
+purrr::map(
   estados_no_sigbm,
-  ~ rmarkdown::render(
-    caminho_rmd,
-    # output_format = word_document(),
-    output_format = prettydoc::html_pretty(theme = "architect"),
-    params = list(estado = .x),
-    output_file = glue::glue("relatorios_uf/{.x}.html")
+  ~quarto::quarto_render(
+    caminho_qmd,
+    output_format = "word",
+    execute_params = list(estado = .x),
+    output_file = glue::glue("praticas/aula_2/{.x}.docx"),
+    quiet = TRUE
   )
 )
-
-
-
-# imprime em PDF!
-pagedown::chrome_print("relatorio-parte-2.html")
-
-caminhos_html <- fs::dir_ls("relatorios_uf/")
-
-caminhos_html_base <- list.files("relatorios_uf", full.names = TRUE)
-
-
-# map(vetor, funcao)
-
-map(caminhos_html, pagedown::chrome_print)
 
 
 
