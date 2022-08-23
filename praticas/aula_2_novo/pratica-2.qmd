@@ -1,0 +1,258 @@
+---
+title: "Informações sobre barragens de mineração"
+format: html
+date: "Agosto de 2022"
+author: "Curso-R e turma"
+params:
+  estado: "MG"
+knitr:
+  opts_chunk: 
+    echo: false
+    message: false
+    fig.align: "center"
+    dpi: 300
+bibliography: 
+  - "packages.bib"
+  - "references.bib"
+csl: "template/abnt.csl"
+lang: pt  
+number-sections: true
+---
+
+## Objetivos {#sec-objetivos}
+
+Este relatório tem como objetivo apresentar funcionalidades do *R Markdown* e do *Quarto*, utilizando dados públicos sobre barragens de mineração no Brasil.
+
+Os objetivos específicos da análise são:
+
+1.  fazer uma tabela das barragens por estado;
+
+2.  fazer um gráfico do número de barragens por categoria de dano potencial associado;
+
+## Materiais e métodos
+
+A base de dados disponibilizada pelo [SIGBM - Sistema de Gestão de Segurança de Barragem de Mineração](https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem) apresenta dados referentes à Barragens de Mineração no território brasileiro.
+
+<center>![](https://app.anm.gov.br/SIGBM/Content/images/anm315x66azul_r.png)</center>
+
+<br>
+
+```{r}
+# Carregar pacotes:
+library(janitor)
+library(tidyverse)
+library(readxl)
+```
+
+```{r}
+#| eval: false
+#| include: false
+## # Fazer download da base de dados do dia atual:
+## # url para baixar os dados
+url_request <- "https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarragem/ExportarExcel" 
+##
+## # cria a pasta dados (se não existir)
+fs::dir_create("dados")
+##
+## # funcão que baixa os dados
+httr::POST(url_request, httr::write_disk("dados/sigbm.xlsx"))
+```
+
+```{r}
+# Importar a base de dados:
+# ler os dados baixados
+sigbm <- read_xlsx("dados/sigbm.xlsx", skip = 4) |>
+  clean_names()
+```
+
+```{r}
+# ----- data de atualização -----
+data_atualizacao_sigbm <- read_xlsx("dados/sigbm.xlsx",
+                                    col_names = FALSE,
+                                    n_max = 1) |>
+  pull() |>
+  str_extract(":.*-") |>
+  str_remove(":") |>
+  str_remove("-") |>
+  str_trim()
+
+```
+
+## Barragens de mineração no Brasil
+
+A base do SIGBM foi obtida no dia `r data_atualizacao_sigbm`, e apresentou informações referentes à `r nrow(sigbm)`.
+
+## Tabela
+
+```{r}
+sigbm |>
+  count(uf, sort = TRUE) |>
+  slice(1:10) |>
+  select(`Estado` = uf, `Número de barragens` = n) |>
+  #gt::gt(caption = "Dez estados brasileiros com mais barragens cadastradas no SIG-BM")
+  knitr::kable(caption = "Dez estados brasileiros com mais barragens cadastradas no SIG-BM")
+# knitr::kable()
+# DT::datatable()
+```
+
+## Gráfico
+
+```{r}
+#| label: fig-grafico-dpa
+#| fig-cap: "Gráfico de barragens por DPA"
+sigbm |>
+  count(dano_potencial_associado) |>
+    mutate(
+    dano_potencial_associado = if_else(
+      dano_potencial_associado == "N/A",
+      "Não se aplica",
+      dano_potencial_associado
+    ),
+    dano_potencial_associado = factor(
+      dano_potencial_associado,
+      levels = c("Não se aplica", "Baixo", "Médio", "Alto")
+    )
+  ) |>
+  ggplot() +
+  aes(x = dano_potencial_associado, y = n) +
+  geom_col(fill = "lightblue") +
+  theme_bw() +
+  labs(x = "Dano potencial associado (DPA)", y = "Quantidade de barragens",
+       title = "Dano potencial associado de barragens de mineração no Brasil")
+```
+
+## Aula 2 - Avançado
+
+### Imagens com knitr
+
+```{r}
+#| out-width: "30%"
+knitr::include_graphics("https://app.anm.gov.br/SIGBM/Content/images/anm315x66azul_r.png")
+```
+
+### Tabelas
+
+```{r}
+tab_top_uf <- sigbm |> 
+  count(uf, sort = TRUE) |> 
+  slice(1:5)
+```
+
+-   Com knitr:
+
+```{r }
+tab_top_uf |> 
+  knitr::kable()
+```
+
+-   Com reactable:
+
+```{r }
+tab_top_uf |> 
+  reactable::reactable()
+```
+
+-   Com DT:
+
+```{r }
+tab_top_uf |> 
+  DT::datatable()
+```
+
+-   Com flextable:
+
+```{r }
+tab_top_uf |> 
+  flextable::flextable()
+```
+
+-   Com gt:
+
+```{r }
+tab_top_uf |> 
+  gt::gt()
+```
+
+## Elementos úteis para textos acadêmicos!
+
+### Equações
+
+$${\text{Média}=\frac {a_{1}+a_{2}+\cdots +a_{n}}{n}}$$
+
+### Adicionar referências
+
+Neste script, usamos os pacotes: tidyverse [@R-tidyverse], knitr [@R-knitr]...
+
+-   Mostrar também com um DOI: <https://doi.org/10.1590/0103-11042020E217> [@silva2020].
+
+### Referência cruzada
+
+<!-- - alterar  o YAML -->
+
+Na figura @fig-grafico-dpa, verificamos que ...
+
+Na @sec-objetivos , descrevemos ...
+
+### Usar child
+
+```{r child="exemplo-child.qmd"}
+
+```
+
+### Gerar referências dos pacotes
+
+```{r}
+pacotes <- c("tidyverse", "knitr")
+knitr::write_bib(pacotes, # pacotes para gerar a referencia
+                 # local para salvar o arquivo
+                 'packages.bib')
+```
+
+## Parâmetros
+
+```{r}
+params$estado
+```
+
+```{r}
+sigbm_filtrado <- sigbm |> 
+  filter(uf == params$estado)
+```
+
+Nesta seção, o relatório se trata do estado `r params$estado`. Existem `r nrow(sigbm_filtrado)` barragens cadastradas no SIGBM neste estado.
+
+```{r}
+#| label: fig-dpa-filtrado
+#| out-width: "90%"
+#| fig-cap: "Dano potencial associado"
+sigbm_filtrado |>
+  count(dano_potencial_associado) |>
+    mutate(
+    dano_potencial_associado = if_else(
+      dano_potencial_associado == "N/A",
+      "Não se aplica",
+      dano_potencial_associado
+    ),
+    dano_potencial_associado = factor(
+      dano_potencial_associado,
+      levels = c("Não se aplica", "Baixo", "Médio", "Alto")
+    )
+  ) |>
+  ggplot() +
+  aes(x = dano_potencial_associado, y = n) +
+  geom_col(fill = "lightblue") +
+  theme_bw() +
+  labs(x = "Dano potencial associado (DPA)", y = "Quantidade de barragens",
+       title = glue::glue("Dano potencial associado de barragens de mineração em {params$estado}"))
+```
+
+```{r}
+sigbm_filtrado |> 
+  count(minerio_principal, sort = TRUE) |> 
+  slice(1:10) |> 
+  knitr::kable()
+```
+
+## Gerar para todos os estados! Iteração de parametros.
+
+Exemplo em um script .R!
