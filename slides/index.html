@@ -719,17 +719,17 @@ class: center, middle, inverse
 ---
 
 
-## Opções de Chunk
+## [Opções de Chunk](https://quarto.org/docs/computations/execution-options.html)
 
 - Opções de chunk que podem afetar como os chunks de código são compilados. Exemplos: 
 
-- `echo: false`- evita que o próprio código apareça
+- `echo: false` -&gt; evita que o próprio código apareça
 
-- `eval: false` - mostra o código, mas ele não é executado
+- `eval: false` -&gt; mostra o código, mas ele não é executado
 
 - `warning: false` e `message: false` - oculta mensagens de avisos produzidas
 
-- `out-width` - controla o a largura das figuras, gráficos, tabelas geradas (Ex: `out-width: "100%"`)
+- `out-width` -&gt; controla o a largura das figuras, gráficos, tabelas geradas (Ex: `out-width: "100%"`)
 
 - Ex de configuração do chunk
 
@@ -881,45 +881,6 @@ A base mtcars possui `r nrow(mtcars)` carros.
 As colunas presentes na base são 
 `r knitr::combine_words(names(mtcars), and = "e ")`.
 ```
-
----
-class: teoria
-
-## Parâmetros
-
-
-.pull-left[
-
-Devemos adicionar os parâmetros (e algum valor padrão) no YAML. 
-
-Ex:
-
-
-```
----
-title: "Relatório com Parâmetros"
-author: "Beatriz"
-date: "Fevereiro de 2022"
-output: html
-params:
-  mes: 12
-  ano: 2021
----
-```
-]
-
-
-.pull-right[
-
-Para acessar os parâmetros, usamos: `params$nome_parametro`.
-
-Ex: `params$mes` para acessar o mês, ou `params$ano`.
-
-
-Recomendação de leitura: [R Markdown: The Definitive Guide - Chapter 15 Parameterized reports](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html)
-
-]
-
 
 ---
 class: teoria
@@ -1081,6 +1042,58 @@ csl: template/abnt.csl
   
 - Obs: No RMarkdown, funciona com outputs que são derivados do pacote `{bookdown}`. Ex: `bookdown::html_document2`,  `bookdown::word_document2`
     - Referência: https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html
+
+---
+class: inverse, center, middle
+
+# Parâmetros
+    
+---
+class: teoria
+
+## Parâmetros
+
+
+.pull-left[
+
+Devemos adicionar os parâmetros (e algum valor padrão) no YAML. 
+
+Ex:
+
+
+```
+---
+title: "Relatório com Parâmetros"
+author: "Beatriz"
+date: "Fevereiro de 2022"
+output: html
+params:
+  mes: 12
+  ano: 2021
+---
+```
+]
+
+
+.pull-right[
+
+Para acessar os parâmetros, usamos: `params$nome_parametro`.
+
+Ex: `params$mes` para acessar o mês, ou `params$ano`.
+
+Recomendação de leitura: [R Markdown: The Definitive Guide - Chapter 15 Parameterized reports](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html)
+
+]
+
+---
+
+## Dicas sobre parâmetros
+
+- No RStudio, é possível acessar os parâmetros com o autocomplete de `params$`.
+
+- Nosso README é feito com parâmetros!
+
+- 
 
 ---
 class: center, middle, inverse
