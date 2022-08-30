@@ -918,7 +918,9 @@ class: teoria
 - Devemos indicar os arquivos `.bib` no YAML do relatório. Exemplo em um caso com 2 arquivos diferentes:
 
 ```
-bibliography: [referencias/packages.bib, referencias/zotero.bib]
+bibliography: 
+  - references.bib
+  - packages.bib
 ```
   
 
@@ -1194,6 +1196,16 @@ class: center, middle, inverse
 
 ## Aula 3
 
+
+---
+class: center, middle, inverse
+
+# Customização 
+
+## **Arquivos word / .docx**
+
+## Aula 3
+
 ---
 
 
@@ -1204,9 +1216,9 @@ class: center, middle, inverse
 - Podemos informar um template de arquivo word como referência. As regras de formatação serão copiadas. Não funciona perfeitamente!
 
 ```
-format: 
-  word:
-    reference_doc: template/modelo.docx
+format:
+  docx:
+    reference-doc: "word_template.docx"
 ```  
 
 ---
@@ -1219,13 +1231,28 @@ format:
 - Exemplo de YAML:
 
 ```
-format: 
-  word:
-    reference_doc: template/modelo.docx
+format:
+  docx:
+    reference-doc: "word_template.docx"
     number-sections: false
-bibliography: [referencias/packages.bib, referencias/zotero.bib]
-csl: template/abnt.csl
+bibliography: 
+  - references.bib
+  - packages.bib
+csl: abnt.csl 
 ```  
+
+
+
+
+---
+class: center, middle, inverse
+
+# Customização 
+
+## **Arquivos HTML**
+
+## Aula 3
+
 
 ---
 
@@ -1482,6 +1509,21 @@ oferecido pela [Curso-R](https://curso-r.com/).
 
 
 ]
+
+
+---
+
+## Adicionando um arquivo CSS 
+
+```{{r}}
+---
+format:
+  html:
+    css: styles.css
+---
+```
+
+Referência: https://quarto.org/docs/visual-editor/content.html#css-styles
 
 ---
 
