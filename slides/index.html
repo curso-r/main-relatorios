@@ -4,7 +4,7 @@
     <title>Relatórios e apresentações automáticas</title>
     <meta charset="utf-8" />
     <meta name="author" content="" />
-    <script src="libs/header-attrs-2.14/header-attrs.js"></script>
+    <script src="libs/header-attrs-2.15/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
     <link href="libs/panelset-0.2.6/panelset.css" rel="stylesheet" />
@@ -1091,9 +1091,9 @@ Recomendação de leitura: [R Markdown: The Definitive Guide - Chapter 15 Parame
 
 - No RStudio, é possível acessar os parâmetros com o autocomplete de `params$`.
 
-- Nosso README é feito com parâmetros!
+- Nosso [README.Rmd](https://github.com/curso-r/202208-relatorios/blob/main/README.Rmd) é feito com parâmetros!
 
-- 
+- Podemos usar o combo `purrr::walk() + quarto::quarto_render()` para criar relatórios de forma automatizada.
 
 ---
 class: center, middle, inverse
@@ -1146,15 +1146,40 @@ Outra forma é disponibilizar o HTML na internet, com serviços como Netlify Dro
 
 ### Disponibilizar utilizando o GitHub
 
-- Gratuito
+- Gratuito! 
 
-- Precisa ter o Git e GitHub configurado com o seu RStudio  (esse vídeo é útil: https://youtu.be/fiZStofJqMQ?t=2415)
+- Três passos:
 
-- O projeto precisa estar vinculado a um repositório no GitHub
+  1. Configurar o Git e o GitHub com o RStudio - 1 vez por usuário do computador.
+  
+  2. Vincular o projeto a um repositório no GitHub - 1 vez por projeto.
+  
+  3. Ativar o GitHub Pages - 1 vez por projeto.
+  
+---
 
-- No repositório do pacote, clique em **Settings**, e no menu lateral escolha **Pages**
+### Disponibilizar utilizando o GitHub
 
-- Em **Source**, selecione a sua branch principal (provavelmente chama de **main** ou **master**), escolha o diretório onde seus arquivos estão: `docs/` ou `root/` (a pasta raíz) e clique em **save**.
+- 1)  Precisa ter o Git e GitHub configurado com o seu RStudio  (esse vídeo é útil: https://youtu.be/fiZStofJqMQ?t=2415)
+
+- 2) O projeto precisa estar vinculado a um repositório no GitHub:
+
+
+```r
+# é necessário rodar apenas uma vez
+usethis::use_git()
+usethis::use_github()
+```
+
+- 3) Ativar o GitHub Pages
+
+
+```r
+usethis::use_github_pages(
+  branch = usethis::git_default_branch(), # branch principal
+  path = "/" # ou /docs 
+)
+```
 
 
 - O endereço do site será `https://seu-username.github.io/nome-repositorio/caminho-do-arquivo.html`  
