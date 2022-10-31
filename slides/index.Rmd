@@ -1000,11 +1000,11 @@ Ex:
 ---
 title: "Relatório com Parâmetros"
 author: "Beatriz"
-date: "Fevereiro de 2022"
+date: "Novembro de 2022"
 output: html
 params:
-  mes: 12
-  ano: 2021
+  mes: 11
+  ano: 2022
 ---
 ```
 ]
