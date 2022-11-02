@@ -14,7 +14,7 @@ url_request <- "https://app.anm.gov.br/SIGBM/Publico/ClassificacaoNacionalDaBarr
 fs::dir_create("dados")
 ##
 ## # funcão que baixa os dados
-httr::POST(url_request, httr::write_disk("dados/sigbm.xlsx"))
+httr::POST(url_request, httr::write_disk("dados/sigbm.xlsx", overwrite = TRUE))
 
 
 ## ----load-data-----------------------------------------------------
