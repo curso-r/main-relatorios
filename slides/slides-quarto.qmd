@@ -1,0 +1,538 @@
+---
+title: "Relatórios e apresentações automáticas"
+author: '<img src="https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/67e5c/img/logo/cursor1-5.png" width="30%">'
+format: curso-r-revealjs
+incremental: false
+embed-resources: true
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    echo: true
+---
+
+# Sobre a Curso-R
+
+## A empresa
+
+
+
+:::: {.columns}
+
+::: {.column width=50%"}
+
+```{r, echo = FALSE, out.width="100%"}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/295643c6243701ae6a9bac3fb8ad467ff0ce3c84/d1785/img/logo/cursor1-41.png")
+```
+
+
+```{r, echo = FALSE, out.width="100%"}
+knitr::include_graphics("img/logo_r6.png")
+```
+
+:::
+
+::: {.column width="45%"}
+```{r, echo = FALSE, out.width="100%"}
+knitr::include_graphics("img/produtos.png")
+```
+:::
+
+::::
+
+
+---
+
+```{r, echo = FALSE}
+templatesR6::criar_slide_nossos_cursos()
+```
+
+
+# Sobre o curso
+
+
+## Relatórios e apresentações automáticas
+
+
+```{r, echo=FALSE, out.width="70%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/main/openscapes/environmental-data-science-r4ds-general.png?raw=true")
+```
+
+---
+
+```{r, echo=FALSE, out.width="70%", fig.align='center', fig.cap='Artwork from "Hello, Quarto" keynote by Julia Lowndes and Mine Çetinkaya-Rundel, presented at RStudio Conference 2022. Illustrated by Allison Horst.'}
+knitr::include_graphics("https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/c2ef45f1-4a68-4c7a-a43f-bdcf0f90e104_rw_1920.png?h=89c4f4138772e8b374e21a814cc91b2f")
+```
+
+
+## Resultados
+
+
+No final, você poderá...
+
+- Criar documentos reprodutíveis (como relatórios e apresentações)
+
+- Compartilhar suas análises usando R em todas as etapas do ciclo da ciência de dados
+
+
+```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
+knitr::include_graphics(c("https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=true"))
+
+```
+
+
+
+
+## Dinâmica
+
+- Exercícios para casa, com entrega facultativa
+
+- __Trabalho final__, com entrega obrigatória
+    - As pessoas que fizerem os trabalhos __mais legais__ receberão uma __bolsa__ para fazer qualquer curso da Curso-R
+    - Mais detalhes sobre o trabalho final nas próximas aulas :)
+
+
+
+## Tirando dúvidas
+
+- **Não existe dúvida idiota**.
+ 
+- Nem sempre é trivial fazer a pergunta certa para que outra pessoa esclareça a sua dúvida. Neste curso, **vamos mostrar melhores práticas na hora de fazer perguntas sobre programação**.
+ 
+- Fora do horário de aula ou monitoria:
+  - perguntas gerais sobre o curso deverão ser feitas no Classroom.
+  - perguntas sobre R, principalmente as que envolverem código, deverão ser enviadas no [nosso discourse](https://discourse.curso-r.com/). Se envolver web scraping, é importante especificar a página que está querendo acessar e como você faria para encontrá-la manualmente.
+
+- [Veja aqui dicas de como fazer uma boa pergunta](https://discourse.curso-r.com/t/como-escrever-uma-boa-pergunta/542).
+
+
+## Por que usar o discourse?
+
+- Muito melhor para escrever textos que possuem códigos. Com ele, podemos usar o pacote `{reprex}`!
+
+- Saber pesquisar sobre erros e fazer a pergunta certa é essencial para aprender e resolver problemas de programação.
+
+- No discourse, teremos mais pessoas acompanhando e respondendo as dúvidas.
+
+- Em um ambiente aberto, as suas dúvidas vão contribuir com a comunidade.
+
+
+### <https://discourse.curso-r.com/>
+
+
+# Trabalho final
+
+## Trabalho final
+
+- Neste curso, utilizaremos uma base de dados para criar um produto para comunicar uma análise de dados (relatório, apresentação, site, etc). 
+
+- O trabalho final de vocês será criar um também!
+
+  - Escolha uma base de dados que você ache interessante!
+  
+  - Defina um objetivo da análise.
+  
+  - Defina um público alvo: a comunicação depende de quem vai ver.
+  
+  - Defina qual formato você quer gerar.
+  
+  - Faça sua análise depois de cada aula, será possível avançar no trabalho. Tragam dúvidas nas monitorias. Isso será a tarefa semanal de vocês. Também teremos leituras adicionais.
+  
+  - Entrega: Uma pasta com o projeto `.Rproj`, o código da análise (em `.qmd`), o arquivo final (seja PDF, HTML, Word, etc), e quaisquer outros arquivos necessários. Se quiser, deixe em um repositório público no GitHub e envie o link.
+  
+- Pontos de avaliação: Reprodutibilidade, efetividade da comunicação, atributos estéticos, engajamento na leitura.
+
+
+# Introdução ao RMarkdown
+
+
+## O que é RMarkdown?
+
+- O R Markdown é um pacote para criação de __relatórios automatizados__ utilizando as linguagens de programação R e de marcação Markdown. 
+
+> Linguagens de marcação utilizam marcadores (símbolos, tags, funções) para formatar um arquivo de texto simples. Os exemplos mais famosos de linguagem de marcação são o HTML e LaTeX.
+
+- A linguagem de marcação Markdown serve para construirmos e formatarmos diversos formatos de arquivos (PDF, HTML, Word, entre outros) a partir de um arquivo de texto com regras bem simples. 
+
+- O __RMarkdown__ é uma extensão de Markdown que nos permite __colocar código de R__.
+
+
+## Por que o RMarkdown é legal?
+
+- Possibilita automatizar a criar produtos com o R. Construindo um relatório em RMarkdown, com exceção das interpretações e conclusões, só precisamos montá-lo uma vez. A partir daí, com apenas um clique podemos:
+
+  - replicar o relatório para diversas versões da base de dados (modificações, correções, processos periódicos);
+
+  - replicar o relatório para diversas variáveis.
+
+  - Criar documentos reprodutíveis
+
+  - Criar diversos tipos de produtos 
+
+```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
+knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=true")
+
+```
+
+
+## Algumas aplicações
+
+```{r echo=FALSE}
+exemplos_rmd <- tibble::tibble(pacote = as.character(),
+               desc = as.character(),
+               exemplos = as.character()) |>
+  
+  tibble::add_row(pacote = "[blogdown](https://bookdown.org/yihui/blogdown/)",
+                  desc = "Blogs e sites",
+                  exemplos = "- [Site da Curso-R](https://curso-r.com/) <br> - [Site da Associação Brasileira de Jurimetria (ABJ)](https://abj.org.br/)") |>
+  
+  tibble::add_row(pacote = "[distill](https://rstudio.github.io/distill/)",
+                  desc = "Blogs e sites",
+                  exemplos = "- [RStudio AI Blog](https://blogs.rstudio.com/ai/) <br> - [Laboratório da Associação Brasileira de Jurimetria (ABJ)](https://lab.abj.org.br/)") |>
+  
+  tibble::add_row(pacote = "[bookdown](https://bookdown.org/)",
+                  desc = "Livros",
+                  exemplos = "- [Livro Ciência de Dados em R](https://livro.curso-r.com/) <br> - [R for Data Science](https://r4ds.had.co.nz/)") |>
+  
+  tibble::add_row(pacote = "[xaringan](https://github.com/yihui/xaringan)",
+                  desc = "Apresentações",
+                  exemplos = "- Essa apresentação (e todas as usadas nos cursos da Curso-R) <br> - [Build Your Own Universe - Garrick Aden-Buie & Travis Gerke](https://www.garrickadenbuie.com/talk/build-your-own-universe/)") |>
+  
+  tibble::add_row(pacote = "[pagedown](https://github.com/rstudio/pagedown)",
+                  desc = "Currículos, cartas e trabalhos acadêmicos",
+                  exemplos = "- [Relatório do Observatório da Insolvência](https://abjur.github.io/obsFase2/relatorio/obs_recuperacoes_abj.pdf) <br>  - [Currículo do William Amorim](https://williamorim.github.io/resume/) ") |>
+  
+    tibble::add_row(pacote = "[flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/)",
+                  desc = "Dashboards",
+                  exemplos = "- [Tesouro Nacional: Análises sobre SICONF: Despesas com educação x IDEB](https://analise-siconfi-ideb.tesouro.gov.br/)") |>
+  
+  
+  tibble::add_row(pacote = "[learnr](https://rstudio.github.io/learnr/)",
+                  desc = "Tutoriais interativos",
+                  exemplos = "- [Text mining with tidy data principles](https://juliasilge.shinyapps.io/learntidytext/) <br> - [Teacups, Giraffes,  & Statistics](https://tinystats.github.io/teacups-giraffes-and-statistics/)") |>
+  
+  tibble::add_row(pacote = "[rticles](https://github.com/rstudio/rticles)",
+                  desc = "Artigos científicos",
+                  exemplos = "   ") |> 
+  tibble::add_row(pacote = " ",
+                  desc = "Outros exemplos",
+                  exemplos = "[Newsletter Garimpo](https://nucleo.jor.br/newsletters/garimpo)") 
+  
+
+
+exemplos_rmd |>
+  dplyr::slice(1:4) |> 
+  knitr::kable(col.names = c("Pacote", "O que podemos fazer?", "Exemplos"))
+```
+
+
+
+## Algumas aplicações
+
+```{r echo=FALSE}
+exemplos_rmd |>
+  dplyr::slice(5:nrow(exemplos_rmd)) |> 
+  knitr::kable(col.names = c("Pacote", "O que podemos fazer?", "Exemplos"))
+```
+
+
+
+## Nova geração: Quarto
+
+O RMarkdown não deixará de existir, mas hoje temos uma alternativa mais poderosa, chamada Quarto.
+
+Para pessoas que usam R, a vantagem do Quarto é apenas ter algumas facilidades a mais (como *autocomplete* de parâmetros no RStudio) e novos templates.
+
+No entanto, por ser um software __independente de R__, o Quarto exporta todas as qualidades do RMarkdown para outras linguagens, especialmente Python, Julia e JavaScript.
+
+Na aula de hoje, __mostraremos exemplos em RMarkdown e Quarto__. A partir da segunda aula, __utilizaremos apenas Quarto__.
+
+
+
+## Estrutura
+
+Todo arquivo RMarkdown/Quarto terá a seguinte estrutura:
+
+
+
+- Um preâmbulo com configurações
+
+```yaml
+---
+title: "Relatório maravilhoso"
+*output: html_document
+---
+```
+
+
+- Blocos de texto (marcados em Markdown)
+
+
+````md
+*Texto em __RMarkdown/Quarto__!
+````
+
+
+- Blocos de código (em R ou outra linguagem)
+
+
+
+````md
+```{r}`r ''`
+*print("ola, codigo R")
+```
+````
+
+> Dependendo do formato de saída, o documento pode precisar ser dividido em vários arquivos ou precisar de arquivos adicionais.
+
+
+## Sintaxe Markdown
+
+Utilizamos Markdown para marcar os textos do relatório.
+
+Principais marcadores utilizados para formatar texto:
+
+- uma palavra entre asteriscos fica em itálico: `*texto*` é transformado em *texto*
+
+- uma palavra entre dois asteríscos fica em negrito: `**texto**` é transformado em **texto**
+
+- um ou mais hashtags viram títulos: `# Título muito grande`, `## Título grande`, `### Título médio`, `#### Título pequeno`, `##### Título muito pequeno`
+
+- hiperlinks podem ser criados com a estrutura `[texto](link)`: 
+
+- `[link para o site da Curso-R](https://curso-r.com)` é transformado em [link para o site da Curso-R](https://curso-r.com).
+
+- para deixar o texto com `esse formato` (formato de código), apenas coloque o texto entre duas crases.
+
+
+Material de consulta: [Livro: Ciência de Dados em R - Seção sobre Markdown](https://livro.curso-r.com/9-1-markdown.html)
+
+
+
+## Visual Editor
+
+
+- As versões mais recentes do RStudio permitem usar o Visual Editor.
+
+
+Leitura indicada:
+
+- <https://www.rstudio.com/blog/exploring-rstudio-visual-markdown-editor/>
+
+- <https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/>
+
+```{r, echo=FALSE, out.width="90%", fig.align='center', fig.cap="Fonte: RStudio"}
+knitr::include_graphics("https://www.rstudio.com/blog/rstudio-v1-4-preview-visual-markdown-editing/images/visual-editing.png")
+
+```
+
+
+## Chunks - Campos de código
+
+
+- Em um arquivo `.qmd` ou `.Rmd`, precisamos escrever nossos códigos dentro dos *chunks*. Para inserir um chunk, utilize o atalho `CTRL + ALT + I`.
+
+- É possível adicionar campos de código utilizando a seguinte sintaxe:
+
+````md
+```{r}`r ''`
+codigo em R aqui
+```
+````
+
+- Dentro dos chunks você poderá escrever códigos em R como se fosse o nosso script .R tradicional. 
+
+
+Material de consulta: [Livro: Ciência de Dados em R - Seção sobre R Markdown](https://livro.curso-r.com/9-2-r-markdown.html)
+
+
+
+## YAML
+
+- Os arquivos `.qmd` ou `.Rmd` começam com códigos em yaml/yml.
+
+- Esse "bloco" de código é delimitado por `---`.
+
+- Apresenta metadados e parâmetros utilizados para gerar o documento final.
+
+```{yml}
+---
+title: "Relatórios automáticos"
+subtitle: "O poder do RMarkdown"
+author: "Curso-R"
+date: "Março de 2021"
+output: xaringan::moon_reader
+---
+```
+
+
+## Knit! 
+
+- Para gerarmos o relatório na extensão desejada, precisamos *renderizá-lo*, isto é, transformar o arquivo `.qmd` ou `.Rmd` em um PDF, HTML ou Word. 
+
+- Isso pode ser feito no RStudio a partir dos botões `Knit` (.Rmd) ou `Render` (.qmd), que fica logo acima do script, ou pelo atalho `CTRL + SHIFT + K`.
+
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/knit-rmd.png")
+```
+
+
+```{r, echo=FALSE, out.width="100%", fig.align='center'}
+knitr::include_graphics("img/knit-quarto.png")
+```
+
+
+
+## O que acabamos de fazer
+
+```{r}
+#| out-width: 60%
+#| fig-cap: "Fontr: Blog do Yihui Xie"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("https://bookdown.org/yihui/rmarkdown-cookbook/images/workflow.png")
+```
+
+```{r}
+#| out-width: 60%
+#| fig-cap: "Fonte: quarto.org"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("https://quarto.org/docs/get-started/hello/images/rstudio-qmd-how-it-works.png")
+```
+
+
+## Principais saídas
+
+```{r, echo=FALSE,out.width="45%"}
+#| fig-cap: "Ilustração por Allison Horst"
+knitr::include_graphics("https://alison.netlify.app/rmd-valentine/images/rmarkdown_hedgehog_wide.png")
+```
+
+
+## Relatórios (.Rmd)
+
+
+### HTML
+
+```{yml}
+output: html_document
+```
+
+### Word (.docx)
+
+```{yml}
+output: word_document
+```
+
+
+## Relatórios (.qmd)
+
+
+### HTML
+
+```{yml}
+format: html
+```
+
+### Word (.docx)
+
+```{yml}
+format: docx
+```
+
+
+
+## Relatórios (.Rmd)
+
+### PDF (com $\TeX$)
+
+
+```{yml}
+output: pdf_document
+```
+
+Caso não tenha o $\TeX$:
+
+```{r eval=FALSE, include=TRUE}
+tinytex::install_tinytex()
+```
+
+
+## Relatórios (.qmd)
+
+### PDF (com $\TeX$)
+
+```{yml}
+format: pdf
+```
+
+Caso não tenha o $\TeX$:
+
+```{r eval=FALSE, include=TRUE}
+tinytex::install_tinytex()
+```
+
+
+## Relatórios
+
+### PDF com o pacote Pagedown
+
+```{yml}
+output: html_document
+knit: pagedown::chrome_print
+```
+
+Ou utilize a função `pagedown::chrome_print()` em um relatório em HTML:
+
+```{r eval=FALSE, include=TRUE}
+pagedown::chrome_print("relatorio.html")
+```
+
+Obs: Por enquanto não existe uma alternativa Quarto a isso.
+
+
+
+## Apresentações (.Rmd)
+
+- **Powerpoint** 
+```{yml}
+output: powerpoint_presentation
+```
+
+- **HTML** 
+```{yml}
+output: xaringan::moon_reader
+```
+
+
+
+## Apresentações (.qmd)
+
+- **Powerpoint** 
+```{yml}
+format: pptx
+```
+
+- **HTML** 
+```{yml}
+format: revealjs
+```
+
+
+
+## Resumo
+
+- Podemos escrever arquivos com código, resultados, textos, imagens, etc. 
+
+- O mesmo conteúdo pode ser disponibilizado em diferentes tipos de saída.
+
+- Nos metadados (`yaml`) do arquivo `.Rmd` ou `.qmd`, definimos a saída no parâmetro `output`.
+
+- Mais saídas e comparação completa: 
+    - [RMarkdown](https://rmarkdown.rstudio.com/formats.html)
+    - [Quarto](https://quarto.org/docs/faq/rmarkdown.html)
+
+
+
