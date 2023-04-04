@@ -46,7 +46,7 @@ install.packages(principal)
 
 
 ```{r echo=FALSE}
-materiais <- readr::read_lines("material.txt")
+materiais <- readr::read_lines("materiais.txt")
 zip::zip("material_do_curso.zip", materiais)
 ```
 
