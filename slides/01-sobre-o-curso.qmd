@@ -22,19 +22,25 @@ knitr:
 
 ::: {.column width=50%"}
 
-```{r, echo = FALSE, out.width="100%"}
+```{r}
+#| echo: false
+#| out.width: 100%
 knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/295643c6243701ae6a9bac3fb8ad467ff0ce3c84/d1785/img/logo/cursor1-41.png")
 ```
 
 
-```{r, echo = FALSE, out.width="100%"}
+```{r}
+#| echo: false
+#| out.width: 100%
 knitr::include_graphics("img/logo_r6.png")
 ```
 
 :::
 
 ::: {.column width="45%"}
-```{r, echo = FALSE, out.width="100%"}
+```{r}
+#| echo: false
+#| out.width: 100%
 knitr::include_graphics("img/produtos.png")
 ```
 :::
@@ -44,7 +50,8 @@ knitr::include_graphics("img/produtos.png")
 
 ---
 
-```{r, echo = FALSE}
+```{r}
+#| echo: false
 templatesR6::criar_slide_nossos_cursos()
 ```
 
@@ -55,13 +62,23 @@ templatesR6::criar_slide_nossos_cursos()
 ## Relatórios e apresentações automáticas
 
 
-```{r, echo=FALSE, out.width="70%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
+```{r}
+#| echo: false
+#| out.width: 70%
+#| fig.align: center
+#| fig.cap: Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'>
+#|   Allison Horst</a>.
 knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/main/openscapes/environmental-data-science-r4ds-general.png?raw=true")
 ```
 
 ---
 
-```{r, echo=FALSE, out.width="70%", fig.align='center', fig.cap='Artwork from "Hello, Quarto" keynote by Julia Lowndes and Mine Çetinkaya-Rundel, presented at RStudio Conference 2022. Illustrated by Allison Horst.'}
+```{r}
+#| echo: false
+#| out.width: 70%
+#| fig.align: center
+#| fig.cap: Artwork from "Hello, Quarto" keynote by Julia Lowndes and Mine Çetinkaya-Rundel,
+#|   presented at RStudio Conference 2022. Illustrated by Allison Horst.
 knitr::include_graphics("https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/c2ef45f1-4a68-4c7a-a43f-bdcf0f90e104_rw_1920.png?h=89c4f4138772e8b374e21a814cc91b2f")
 ```
 
@@ -76,7 +93,12 @@ No final, você poderá...
 - Compartilhar suas análises usando R em todas as etapas do ciclo da ciência de dados
 
 
-```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
+```{r}
+#| echo: false
+#| out.width: 100%
+#| fig.align: center
+#| fig.cap: Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'>
+#|   Allison Horst</a>.
 knitr::include_graphics(c("https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=true"))
 
 ```

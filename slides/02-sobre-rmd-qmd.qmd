@@ -36,14 +36,20 @@ knitr:
 
     -   Criar diversos tipos de produtos
 
-```{r, echo=FALSE, out.width="100%", fig.align='center', fig.cap="Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'> Allison Horst</a>."}
+```{r}
+#| echo: false
+#| out.width: 100%
+#| fig.align: center
+#| fig.cap: Ilustração por <a href='https://github.com/allisonhorst/stats-illustrations'>
+#|   Allison Horst</a>.
 knitr::include_graphics("https://github.com/allisonhorst/stats-illustrations/blob/main/rstats-artwork/reproducibility_court.png?raw=true")
 
 ```
 
 ## Algumas aplicações
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 exemplos_rmd <- tibble::tibble(pacote = as.character(),
                desc = as.character(),
                exemplos = as.character()) |>
@@ -93,7 +99,8 @@ exemplos_rmd |>
 
 ## Algumas aplicações
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 exemplos_rmd |>
   dplyr::slice(5:nrow(exemplos_rmd)) |> 
   knitr::kable(col.names = c("Pacote", "O que podemos fazer?", "Exemplos"))
@@ -166,7 +173,11 @@ Leitura indicada:
 
 -   <https://docs.posit.co/ide/user/ide/guide/documents/visual-editor.html>
 
-```{r, echo=FALSE, out.width="90%", fig.align='center', fig.cap="Fonte: Posit"}
+```{r}
+#| echo: false
+#| out.width: 90%
+#| fig.align: center
+#| fig.cap: 'Fonte: Posit'
 knitr::include_graphics("https://docs.posit.co/ide/user/ide/guide/documents/images/visual-editing.png")
 
 ```
@@ -214,13 +225,19 @@ output: xaringan::moon_reader
 ::: panel-tabset
 ## Knit .rmd
 
-```{r, echo=FALSE, out.width="50%", fig.align='center'}
+```{r}
+#| echo: false
+#| out.width: 50%
+#| fig.align: center
 knitr::include_graphics("img/knit-rmd.png")
 ```
 
 ## Render .qmd
 
-```{r, echo=FALSE, out.width="50%", fig.align='center'}
+```{r}
+#| echo: false
+#| out.width: 50%
+#| fig.align: center
 knitr::include_graphics("img/knit-quarto.png")
 ```
 
@@ -250,7 +267,9 @@ knitr::include_graphics("https://quarto.org/docs/get-started/hello/images/rstudi
 
 ## Principais saídas
 
-```{r, echo=FALSE,out.width="45%"}
+```{r}
+#| echo: false
+#| out.width: 45%
 #| fig-cap: "Ilustração por Allison Horst"
 knitr::include_graphics("https://alison.netlify.app/rmd-valentine/images/rmarkdown_hedgehog_wide.png")
 ```
@@ -297,7 +316,9 @@ output: pdf_document
 
 Caso não tenha o $\TeX$:
 
-```{r eval=FALSE, include=TRUE}
+```{r}
+#| eval: false
+#| include: true
 tinytex::install_tinytex()
 ```
 
@@ -311,7 +332,9 @@ format: pdf
 
 Caso não tenha o $\TeX$:
 
-```{r eval=FALSE, include=TRUE}
+```{r}
+#| eval: false
+#| include: true
 tinytex::install_tinytex()
 ```
 
@@ -326,7 +349,9 @@ knit: pagedown::chrome_print
 
 Ou utilize a função `pagedown::chrome_print()` em um relatório em HTML:
 
-```{r eval=FALSE, include=TRUE}
+```{r}
+#| eval: false
+#| include: true
 pagedown::chrome_print("relatorio.html")
 ```
 
