@@ -125,21 +125,21 @@ Todo arquivo RMarkdown/Quarto terá a seguinte estrutura:
 ``` yaml
 ---
 title: "Relatório maravilhoso"
-*output: html_document
+output: html_document
 ---
 ```
 
 -   Blocos de texto (marcados em Markdown)
 
 ``` md
-*Texto em __RMarkdown/Quarto__!
+Texto em __RMarkdown/Quarto__!
 ```
 
 -   Blocos de código (em R ou outra linguagem)
 
 ```` md
 ```{r}`r ''`
-*print("ola, codigo R")
+print("ola, codigo R")
 ```
 ````
 
