@@ -1,6 +1,6 @@
 ---
 title: "Relatórios e apresentações automáticas"
-subtitle: "Automatização com parâmetros"
+subtitle: "Compartilhando resultados"
 author: '<img src="https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/67e5c/img/logo/cursor1-5.png" width="30%">'
 format: curso-r-revealjs
 incremental: false
@@ -11,4 +11,82 @@ knitr:
     warning: false
     echo: true
 ---
+
+
+## Compartilhando os resultados
+
+Podemos facilmente enviar os arquivos PDF e `.docx` via e-mail. Porém e no caso do output ser um HTML?
+
+No HTML, muitas vezes o arquivo depende de outros arquivos (ou seja, ele não é auto-contido).
+
+Podemos usar uma opção que permite fazer um arquivo autocontido, sem dependências (porém isso deixará seu arquivo grande, e também pode demorar para ser gerado):
+
+```{{yaml}}
+---
+format:
+  html:
+    embed-resources: true
+---
+```
+
+- [Documentação sobre documentos auto contidos (self contained)](https://quarto.org/docs/output-formats/html-basics.html#self-contained)
+
+
+
+## Disponibilizar na internet
+
+Outra forma é disponibilizar o HTML na internet, com serviços como Netlify Drop ou GitHub ! 
+
+> DICA IMPORTANTE: Busque nomear seus arquivos como `index.html`
+
+## Disponibilizar utilizando o Netlify Drop
+
+- <https://app.netlify.com/drop>
+
+- Gratuito
+
+- Para quem não usa GitHub.
+
+- Podemos subir uma pasta com todo o conteúdo dentro.
+
+- Mais fácil, mas não dá pra ficar atualizando o material depois de um jeito fácil.
+
+
+
+## Disponibilizar utilizando o GitHub
+
+- Gratuito! 
+
+- Três passos:
+
+  1. Configurar o Git e o GitHub com o RStudio - 1 vez por usuário do computador.
+  
+  2. Vincular o projeto a um repositório no GitHub - 1 vez por projeto.
+  
+  3. Ativar o GitHub Pages - 1 vez por projeto.
+  
+
+## Disponibilizar utilizando o GitHub
+
+- 1)  Precisa ter o Git e GitHub configurado com o seu RStudio  (esse vídeo é útil: <https://youtu.be/fiZStofJqMQ?t=2415> )
+
+- 2) O projeto precisa estar vinculado a um repositório no GitHub:
+
+```{r eval=FALSE, include=TRUE}
+# é necessário rodar apenas uma vez
+usethis::use_git()
+usethis::use_github()
+```
+
+- 3) Ativar o GitHub Pages
+
+```{r eval=FALSE, include=TRUE}
+usethis::use_github_pages(
+  branch = usethis::git_default_branch(), # branch principal
+  path = "/" # ou /docs 
+)
+```
+
+
+- O endereço do site será `https://seu-username.github.io/nome-repositorio/caminho-do-arquivo.html`  
 
