@@ -12,3 +12,335 @@ knitr:
     echo: true
 ---
 
+## Chunks de Código em R
+
+- Os chunks são campos onde podemos inserir código de R (ou Python, SQL, Bash...) em um arquivo. 
+
+- Os chunks podem ter rótulos/nomes, para identificar o conteúdo gerado.
+
+- Existe um atalho do teclado para criar chunks no RStudio:  `Ctrl + ALt + I`. 
+
+- Também é possível criar um chunk clicando no botão <img src='img/insert-chunk.png'> do RStudio.
+
+
+## [Opções de Chunk](https://quarto.org/docs/computations/execution-options.html)
+
+- Opções de chunk que podem afetar como os chunks de código são compilados. Exemplos: 
+
+- `echo: false` -> evita que o próprio código apareça
+
+- `eval: false` -> mostra o código, mas ele não é executado
+
+- `warning: false` e `message: false` - oculta mensagens de avisos produzidas
+
+- `out-width` -> controla o a largura das figuras, gráficos, tabelas geradas (Ex: `out-width: "100%"`)
+
+- Ex de configuração do chunk
+
+````md
+```{r}`r ''`
+#| warning: false
+#| message: false
+```
+````
+
+__Obs__: O RMarkdown permite outra forma de incluir opções de chunk, mas ela não é mais recomendada.
+
+
+
+## Códigos em R - Opções de chunk
+
+
+### Código + Resultado
+
+- `echo: true`
+
+```{r echo=TRUE}
+nrow(mtcars)
+```
+
+
+### Apenas código
+- `echo: true` e  `eval: false`
+
+```{r echo=TRUE, eval=FALSE}
+nrow(mtcars)
+```
+
+
+### Apenas resultado
+
+- `echo: false`
+
+```{r echo=FALSE}
+nrow(mtcars)
+```
+
+
+## Opções globais de Chunk
+
+- As opções globais de chunk são opções de chunk que são válidas para o documento inteiro.
+
+- Algumas opções são úteis, como `fig-align = "center"`.
+
+
+- Para configurar as opções globais de chunk, modifique o código abaixo e insira no código `YAML`:
+
+```yaml
+knitr:
+  opts_chunk: 
+    message: false
+    warning: false
+    echo: true
+
+```
+
+
+
+
+- [Link da documentação](https://quarto.org/docs/computations/r.html#knitr-options)
+
+
+
+
+## Adicionando imagens usando o knitr
+
+
+- Função: `knitr::include_graphics()`
+
+-  Opções de Chunk: 
+
+  - `out-width: "30%"` - Largura da imagem
+
+  - `fig-align: "center"`  - Alinhamento da imagem
+
+  - `fig-cap: "Logo R"` - Legenda da imagem 
+
+Exemplo:
+
+
+```{r}
+#| echo: fenced
+#| out-width: "30%"
+#| fig-align: 'center'
+#| fig-cap: "Logo R"
+knitr::include_graphics("https://www.r-project.org/Rlogo.png")
+```
+
+
+## Adicionar gráficos
+
+- Você pode adicionar um chunk de código com o código que gera o gráfico.
+
+- Controle como isso aparecerá no relatório usando as opções de chunk.
+
+- Experimente também a opção `dpi: 300` (ou número maior), pois controla a resolução da imagem.
+
+
+
+## Tabelas com R
+
+- Várias opções: `knitr::kable()`, `DT::datatable()` , `reactable::reactable()`, entre outras.
+
+```{r echo=TRUE}
+mtcars |>
+  head(3) |>
+  knitr::kable()
+```
+
+
+
+## Código inline
+
+- É útil para adicionar resultados de código em R dentro de parágrafos.
+
+
+**Exemplo:**
+
+A base mtcars possui `r nrow(mtcars)` carros.
+As colunas presentes na base são 
+`r knitr::combine_words(names(mtcars), and = "e ")`.
+
+**Código Markdown:**
+
+
+```{r eval=FALSE, echo=TRUE}
+A base mtcars possui `r nrow(mtcars)` carros.
+As colunas presentes na base são 
+`r knitr::combine_words(names(mtcars), and = "e ")`.
+```
+
+
+
+
+## Adicionar equações
+
+- Podemos adicionar equações em LaTeX. Dica: [Equações em LaTeX no Mettzer](https://app.mettzer.com/latex), ou pesquise no google por "Equações em LaTeX".
+  
+- Equação centralizada: Envolver a equação por dois `$`.
+
+$${\text{Média}=\frac {a_{1}+a_{2}+\cdots +a_{n}}{n}}$$
+
+  - Equação junto ao texto: Envolver a equação por um `$`.
+
+> Ou também na linha ${\text{Média}=\frac {a_{1}+a_{2}+\cdots +a_{n}}{n}}$, junto ao texto!
+
+**Código Markdown:**
+
+
+```md
+$${\text{Média}=\frac {a_{1}+a_{2}+\cdots +a_{n}}{n}}$$
+```
+
+
+
+
+## Adicionar referências
+
+- Podemos adicionar referências no texto usando um arquivo `.bib`. 
+
+- Podemos gerar um arquivo `.bib` usando um gerenciador de referências. Eu utilizo o [Zotero](https://www.zotero.org/), a extensão [Better Bibtex for Zotero](https://retorque.re/zotero-better-bibtex/installation/) e a extensão do Zotero para o navegador.
+
+- No arquivo `.bib`, cada referência deverá ter um rótulo, que usaremos para citar dentro do arquivo `.qmd`, precedido de `@`.
+
+- Devemos indicar os arquivos `.bib` no YAML do relatório. Exemplo em um caso com 2 arquivos diferentes:
+
+```
+bibliography: 
+  - references.bib
+  - packages.bib
+```
+  
+
+
+
+
+## Citar o R - Função citation()
+
+```
+> citation() 
+
+To cite R in publications use:
+
+  R Core Team (2021). R: A language and environment for
+  statistical computing. R Foundation for Statistical
+  Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {R: A Language and Environment for Statistical Computing},
+    author = {{R Core Team}},
+    organization = {R Foundation for Statistical Computing},
+    address = {Vienna, Austria},
+    year = {2021},
+    url = {https://www.R-project.org/},
+  }
+
+We have invested a lot of time and effort in creating R,
+please cite it when using it for data analysis. See also
+‘citation("pkgname")’ for citing R packages.
+```
+
+
+
+
+
+## Citar pacotes
+
+- Podemos gerar um `.bib` com as referências de pacotes utilizados usando a função `knitr::write_bib()`:
+
+```{r echo=TRUE}
+pacotes <- c("tidyverse")
+knitr::write_bib(pacotes, # pacotes para gerar a referencia
+                 # local para salvar o arquivo
+                 'packages.bib')
+```
+
+
+## Exemplo do `packages.bib` gerado
+
+````
+@Manual{R-tidyverse,
+  title = {tidyverse: Easily Install and Load the Tidyverse},
+  author = {Hadley Wickham},
+  year = {2021},
+  note = {R package version 1.3.1},
+  url = {https://CRAN.R-project.org/package=tidyverse},
+}
+
+@Article{tidyverse2019,
+  title = {Welcome to the {tidyverse}},
+  author = {Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani},
+  year = {2019},
+  journal = {Journal of Open Source Software},
+  volume = {4},
+  number = {43},
+  pages = {1686},
+  doi = {10.21105/joss.01686},
+}
+````
+
+
+
+
+## Como citar no `.qmd`
+
+- Formas de usar os rótulos gerados no arquivo `.qmd`:
+
+```{r echo=FALSE}
+tibble::tibble(
+  forma_de_citar = as.character(), resultado = as.character()
+) |> 
+  tibble::add_row(
+    forma_de_citar = "@tidyverse2019",
+    resultado = "Wickham et al. (2019)"
+  )|> 
+  tibble::add_row(
+    forma_de_citar = "[@tidyverse2019; @R-tidyverse]",
+    resultado = "(Wickham et al. 2019; Wickham 2021)"
+  )|> 
+  tibble::add_row(
+    forma_de_citar = "Em -@tidyverse2019, Hadley e colaboradores...",
+    resultado = "Em 2019, Hadley e colaboradores... "
+  ) |> 
+    tibble::add_row(
+    forma_de_citar = "Segundo Hadley Wickham e colaboradores [-@tidyverse2019]",
+    resultado = "Segundo Hadley Wickham e colaboradores (2019) "
+  ) |> 
+  knitr::kable()
+```
+
+
+
+
+
+## Formatação das referências
+
+- O conteúdo do arquivo `.bib` é formatado a partir de um arquivo `.csl` (Citation Style Language).
+
+- Devemos informar caminho até o arquivo CSL no YAML, por exemplo:
+
+```
+csl: template/abnt.csl
+```
+
+- Lugares para baixar arquivos CSL:
+
+  - <https://github.com/citation-style-language/styles>
+  - <https://citationstyles.org/>
+  
+  
+
+
+## Referências cruzadas
+
+
+- **Figuras, tabelas, equações, seções:**
+  - Usamos o rótulo do chunk (ou nome) onde a tabela ou imagem foi criada para fazer a referência cruzada. 
+    - Ex: `@fig-rotulo-da-imagem` , `@tab-rotulo-da-tabela`, `@eq-rotulo-da-equacao`, `@sec-rotulo-da-secao`.
+
+- Para fazer referência cruzada em capítulos/seções, devemos adicionar um rótulo para o capítulo, que deverá ser escrito logo após a cabeçalho (que delimitamos com `#`, `##`, etc).
+  
+- Obs: No RMarkdown, funciona com outputs que são derivados do pacote `{bookdown}`. Ex: `bookdown::html_document2`,  `bookdown::word_document2`
+    - Referência: <https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html>
