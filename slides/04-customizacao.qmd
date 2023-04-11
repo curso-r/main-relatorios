@@ -252,7 +252,6 @@ format:
 
 Referência: <https://quarto.org/docs/visual-editor/content.html#css-styles>
 
----
 
 ## Dica de ouro 🚩
 
@@ -265,4 +264,18 @@ Atalho costuma ser: **CTRL + SHIFT + C**
 - [Firefox - Page inspector](https://developer.mozilla.org/pt-BR/docs/Tools/Page_Inspector)
 
 - [Chrome](https://support.google.com/campaignmanager/answer/2828688?hl=pt-BR)
+
+## Referências
+
+
+- [Mozilla Web Docs](https://developer.mozilla.org/pt-BR/docs/Learn/Getting_started_with_the_web)
+
+- [w3schools.com - HTML](https://www.w3schools.com/html/default.asp)
+
+- [w3schools.com - CSS](https://www.w3schools.com/css/)
+
+
+- [Free Code Camp](https://www.freecodecamp.org/learn/responsive-web-design/)
+
+- [Palestra do Garrick Aden-Buie: Using xaringan to learn web development](https://rstudio.com/resources/rstudioglobal-2021/xaringan-playground-using-xaringan-to-learn-web-development/)
 

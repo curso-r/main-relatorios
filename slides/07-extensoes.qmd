@@ -1,6 +1,6 @@
 ---
 title: "Relatórios e apresentações automáticas"
-subtitle: "Automatização com parâmetros"
+subtitle: "Extensões"
 author: '<img src="https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/67e5c/img/logo/cursor1-5.png" width="30%">'
 format: curso-r-revealjs
 incremental: false
@@ -12,3 +12,25 @@ knitr:
     echo: true
 ---
 
+## Extensões com Quarto
+
+- Extensões de template no Quarto: [Quarto Guide](https://quarto.org/docs/guide/)
+    - ⚠️: muita coisa!
+    
+    
+- [Extensões de funcionalidade no Quarto](https://quarto.org/docs/extensions/)    
+
+## Pacotes de extensões com RMarkdown
+
+- Relatórios:
+
+  - [pagedown](https://github.com/rstudio/pagedown)
+  - [rticles](https://github.com/rstudio/rticles)
+  - [bookdown](https://github.com/rstudio/bookdown)
+
+- Apresentações:
+
+  - [xaringan](https://github.com/yihui/xaringan)
+
+- Dashboards:
+  - [flexdashboard](https://github.com/rstudio/flexdashboard) 
