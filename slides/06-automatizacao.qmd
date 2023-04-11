@@ -12,3 +12,72 @@ knitr:
     echo: true
 ---
 
+
+## Parâmetros
+
+
+Devemos adicionar os parâmetros (e algum valor padrão para o mesmo) no YAML. 
+
+Ex:
+
+
+```
+---
+title: "Relatório com Parâmetros"
+author: "Beatriz"
+date: "Abril de 2023"
+output: html
+params:
+  mes: 04
+  ano: 2023
+---
+```
+
+## Acessando valores dos parâmetros
+
+
+- Para acessar os parâmetros, usamos: `params$nome_parametro`.
+
+Ex: `params$mes` para acessar o mês, ou `params$ano`.
+
+- No RStudio, é possível acessar os parâmetros com o autocomplete de `params$`.
+
+
+- [Documentação sobre parâmetros](https://quarto.org/docs/computations/parameters.html)
+
+
+
+## Função `quarto::quarto_render()`
+
+
+- A função `quarto::quarto_render()`, sem argumentos, equivale à apertar o botão "Render"! 
+
+- A função possui argumentos interessantes, como:
+
+  - `output_file`: nome do arquivo gerado
+
+  - `execute_params`: uma lista com quais parâmetros queremos usar
+
+  - `quiet`: não mostra warnings e mensagens ao renderizar
+  
+Exemplo:
+
+```r
+quarto_render(
+  arquivo_qmd,
+  execute_params = list(ano = 2023, mes = 01),
+  output_file = "relatorio-2023-01.html"
+)
+```
+
+
+
+## Materiais sobre purrr
+
+- Podemos usar o combo `purrr::walk() + quarto::quarto_render()` para criar relatórios de forma automatizada.
+
+- [Documentação](https://purrr.tidyverse.org/reference/map.html)
+
+- [Capítulo sobre programação funcional](https://livro.curso-r.com/10-funcionais.html)
+
+- [Live sobre purrr](https://www.youtube.com/live/eHbFkEyN3OU?feature=share)
