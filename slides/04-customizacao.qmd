@@ -1,6 +1,6 @@
 ---
 title: "Relatórios e apresentações automáticas"
-subtitle: "Intermediário"
+subtitle: "Customização"
 author: '<img src="https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/67e5c/img/logo/cursor1-5.png" width="30%">'
 format: curso-r-revealjs
 incremental: false
@@ -11,4 +11,258 @@ knitr:
     warning: false
     echo: true
 ---
+
+
+# **Arquivos word / .docx**
+
+## Usar um modelo para word
+
+- Em alguns casos, somos obrigados a enviar arquivos `.docx` (ex: algumas revistas científicas apenas aceitam esse tipo de arquivo).
+
+- Podemos informar um template de arquivo word como referência. As regras de formatação serão copiadas. Não funciona perfeitamente!
+
+```
+format:
+  docx:
+    reference-doc: "word_template.docx"
+```  
+
+
+## Exportar um `.docx` tunado
+
+- Em alguns casos, somos obrigados a enviar arquivos `.docx` (ex: algumas revistas científicas apenas aceitam esse tipo de arquivo).
+
+- Exemplo de YAML:
+
+```
+format:
+  docx:
+    reference-doc: "word_template.docx"
+    number-sections: false
+bibliography: 
+  - references.bib
+  - packages.bib
+csl: abnt.csl 
+```  
+
+
+# **Arquivos HTML**
+
+## Introdução à HTML e CSS
+
+- Quando criamos um arquivo Quarto que gera um output em `.html`, esse arquivo `.html` é interpretado pelo navegador (ex. Chrome), utilizando também os arquivos `.css` e `.js`
+
+  - **HTML** (HyperText Markup Language - Linguagem de Marcação de Hipertexto): é uma linguagem de marcação, é usado para estruturar páginas da internet (websites).
+  
+  - **CSS** (Cascading Style Sheets - Folha de Estilo em Cascata): é usado para estilizar os elementos escritos no HTML.
+
+  - **Javascript**: é uma linguagem de programação, permite que as páginas sejam dinâmicas.
+  
+
+```{r echo=FALSE, out.width="50%", eval = TRUE, fig.align='center'}
+knitr::include_graphics("img/html-css-javascript.jpg")
+```
+
+
+## HTML 🧱 🏗 
+
+
+- HTML descreve a estrutura de uma página web.
+
+- HTML consiste em uma série de elementos. Estes elementos mostram para o navegador (o browser) como apresentar o conteúdo.
+
+- Um elemento em HTML consiste em uma tag inicial, algum conteúdo que será marcado, e a tag final (que é diferente da tag inicial por possuir a barra `/` )
+
+```
+<nomedatag>Conteúdo a ser marcado vai aqui...</nomedatag>
+```
+
+- Elementos em HTML podem ter atributos de classe (`class`). As classes geralmente são usadas para referenciar um estilo.
+
+
+```
+<nomedatag class="nomedaclasse">
+Conteúdo a ser marcado vai aqui...
+</nomedatag>
+```
+
+## Exemplo  🧱 🏗 
+
+### Código em Markdown
+
+``` 
+Este é o curso de **Relatórios e visualização de dados**,
+oferecido pela [Curso-R](https://curso-r.com/).
+```
+
+### Código HTML
+
+```
+<p> 
+Este é o curso de <b>Relatórios e visualização de dados</b>,
+oferecido pela <a href='https://curso-r.com/'>Curso-R</a>.
+</p> 
+```
+
+### Como aparece
+
+<p> 
+Este é o curso de <b>Relatórios e visualização de dados</b>,
+oferecido pela <a href='https://curso-r.com/'>Curso-R</a>.
+</p> 
+
+
+
+
+## CSS  🎨 
+
+- CSS é uma sigla para *Cascading Style Sheets* (tradução literal: folha de estilo em cascada).
+
+- CSS descreve como os elementos em HTML serão apresentados.
+
+- Você pode criar estilos no seu arquivo `.qmd`, ou também salvar em um arquivo externo. As folhas de estilo são salvas em arquivos com a extensão `.css`.
+
+- Você pode criar um arquivo CSS e reaproveitar em diversos arquivos HTML. 
+
+- Criar estilos no seu arquivo `.Rmd`:
+  - Colocando o estilo dentro de uma tag html `<style>` 
+  - Criando um Chunk de código CSS
+
+
+
+## Exemplo de elementos
+
+- Para elementos, usamos a seguinte estrutura:
+
+````CSS
+nomedoelemento {
+
+  propriedade: valor da propriedade;
+
+}
+````
+
+Exemplo: 
+
+````CSS
+p {
+
+  font-size: 20px;  
+
+}
+
+````
+
+
+
+## Exemplo de classe
+
+- Para classes, usamos a estrutura dos elementos, porém adicionando um ponto antes:
+
+````CSS
+.nomedaclasse {
+
+  propriedade: valor da propriedade;
+
+}
+
+````
+
+Exemplo: 
+
+````CSS
+.textogrande {
+
+  font-size: 40px;  
+
+}
+
+````
+
+
+
+## Exemplo 1 🎨 
+
+### Código HTML
+
+```
+<style>
+.textorosa{
+color: pink;
+
+}
+</style>
+<p> 
+Este é o curso de 
+<b class="textorosa">Relatórios e visualização de dados</b>,
+oferecido pela <a href='https://curso-r.com/'>Curso-R</a>.
+</p> 
+```
+]
+
+
+### Como aparece
+
+<style>
+.textorosa{
+color: pink;
+
+}
+</style>
+<p> 
+Este é o curso de 
+<b class="textorosa">Relatórios e visualização de dados</b>,
+oferecido pela <a href='https://curso-r.com/'>Curso-R</a>.
+</p> 
+
+
+## Exemplo 2  🎨 
+
+### Código em Markdown
+
+```{css}
+#| echo: fenced
+.textoroxo{
+  color: #6A0DAD;
+}
+```
+
+``` 
+Este é o curso de [Relatórios e visualização de dados]{.textoroxo},
+oferecido pela [Curso-R](https://curso-r.com/).
+```
+
+
+### Como aparece
+
+Este é o curso de [Relatórios e visualização de dados]{.textoroxo},
+oferecido pela [Curso-R](https://curso-r.com/).
+
+
+
+## Adicionando um arquivo CSS 
+
+```{{yaml}}
+---
+format:
+  html:
+    css: styles.css
+---
+```
+
+Referência: <https://quarto.org/docs/visual-editor/content.html#css-styles>
+
+---
+
+## Dica de ouro 🚩
+
+Use **muito** as ferramentas de desenvolvedor(a) do navegador.
+
+Permite explorar o conteúdo de uma página web. 
+
+Atalho costuma ser: **CTRL + SHIFT + C**
+
+- [Firefox - Page inspector](https://developer.mozilla.org/pt-BR/docs/Tools/Page_Inspector)
+
+- [Chrome](https://support.google.com/campaignmanager/answer/2828688?hl=pt-BR)
 
