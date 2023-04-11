@@ -81,7 +81,7 @@ nrow(mtcars)
 
 - As opções globais de chunk são opções de chunk que são válidas para o documento inteiro.
 
-- Algumas opções são úteis, como `fig-align = "center"`.
+- Algumas opções são úteis, como `fig-align: "center"`.
 
 
 - Para configurar as opções globais de chunk, modifique o código abaixo e insira no código `YAML`:
@@ -335,12 +335,25 @@ csl: template/abnt.csl
 
 ## Referências cruzadas
 
-
-- **Figuras, tabelas, equações, seções:**
-  - Usamos o rótulo do chunk (ou nome) onde a tabela ou imagem foi criada para fazer a referência cruzada. 
-    - Ex: `@fig-rotulo-da-imagem` , `@tab-rotulo-da-tabela`, `@eq-rotulo-da-equacao`, `@sec-rotulo-da-secao`.
-
-- Para fazer referência cruzada em capítulos/seções, devemos adicionar um rótulo para o capítulo, que deverá ser escrito logo após a cabeçalho (que delimitamos com `#`, `##`, etc).
+**Figuras, tabelas, equações, seções:**
   
-- Obs: No RMarkdown, funciona com outputs que são derivados do pacote `{bookdown}`. Ex: `bookdown::html_document2`,  `bookdown::word_document2`
+  
+- Usamos o rótulo do chunk (ou nome) onde a tabela ou imagem foi criada para fazer a referência cruzada. 
+  - Ex: `@fig-rotulo-da-imagem` , `@tbl-rotulo-da-tabela`, `@eq-rotulo-da-equacao`, `@sec-rotulo-da-secao`.
+
+- Não é necessário escrever a palavra "Tabela" ou "Figura". 
+  - Se precisar mudar o comportamento, [veja este link](https://quarto.org/docs/authoring/cross-references.html#references)
+- Nas opções de chunk, adicionar `#| label: fig-rotulo-da-imagem`
+- __Sempre__ adicionar uma legenda para sua figura ou tabela: `#| tbl-cap: Descrição da tabela.` ou `#| fig-cap: Descrição da imagem.`
+- Para mudar de "Table" para "Tabela", coloque `lang: pt` no YAML do arquivo.
+
+## Referências cruzadas
+
+__Capítulos/seções__
+
+- Adicionar um rótulo para o capítulo, que deverá ser escrito logo após a cabeçalho (que delimitamos com `#`, `##`, etc).
+  - Ex: `## Minha seção {#sec-minha-secao}`
+  - Na `@sec-minha-secao`, vimos que ...
+
+- Obs: No RMarkdown, isso só funciona com outputs que são derivados do pacote `{bookdown}`. Ex: `bookdown::html_document2`,  `bookdown::word_document2`
     - Referência: <https://bookdown.org/yihui/rmarkdown-cookbook/cross-ref.html>
