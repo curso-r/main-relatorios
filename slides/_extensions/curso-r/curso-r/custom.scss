@@ -113,3 +113,11 @@ h3{
 .reveal code {
   background-color: rgb(229, 243, 255);
 }
+
+
+
+.reveal ::selection {
+  color: #202020;
+  background: #e9f2ff;
+  text-shadow: none;
+}
