@@ -95,11 +95,15 @@ Outra forma é disponibilizar o HTML na internet, com serviços como Netlify Dro
 
 -   Vamos disponibilizar nossa apresentação no QuartoPub: <https://quartopub.com/>
 
--   No terminal, usar o comando a seguir, e seguir o passo a passo.
+-   O seu terminal precisa estar na mesma pasta que o arquivo `.qmd`. Se não estiver, você pode navegar para a pasta correta usando o comando `cd`, conforme exemplo abaixo.
+
+-   No terminal, usar o comando `quarto publish quarto-pub`, e seguir o passo a passo.
 
 ```bash
+cd pasta/do/arquivo/qmd
 quarto publish quarto-pub nome-do-arquivo.qmd
 ```
+
 
 
 ## Disponibilizar utilizando o GitHub
