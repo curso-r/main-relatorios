@@ -1,0 +1,184 @@
+---
+title: "Dashboard"
+author: "Curso-R"
+format: 
+  dashboard:
+    logo: https://curso-r.com/images/logo_col_branco.webp
+    scrolling: true
+    theme: sandstone
+---
+
+```{r}
+#| context: setup
+
+library(tidyverse)
+library(dados)
+library(shiny)
+library(bslib)
+```
+
+# Página 1
+
+## Row
+
+```{r}
+#| content: valuebox
+#| title: Altura média
+#| icon: rulers
+#| color: primary
+round(mean(dados_starwars$altura, na.rm = TRUE), 1)
+```
+
+```{r}
+#| content: valuebox
+#| title: Massa média
+#| icon: stack
+#| color: primary
+
+round(mean(dados_starwars$massa, na.rm = TRUE), 1)
+```
+
+```{r}
+#| content: valuebox
+#| title: Número de personagens
+#| icon: person
+#| color: primary
+nrow(dados_starwars)
+```
+
+
+## Row {height=60%}
+
+```{r}
+#| title: Gráfico 1
+
+dados_starwars |> 
+  ggplot(aes(x = altura, y = massa)) +
+  geom_point()
+```
+
+## Row {height=40%}
+
+```{r}
+#| title: Gráfico 2
+#| padding: 0px
+
+dados_starwars |> 
+  ggplot(aes(x = altura)) +
+  geom_histogram()
+```
+
+```{r}
+#| title: Gráfico 3
+#| padding: 0px
+
+dados_starwars |> 
+  ggplot(aes(x = massa)) +
+  geom_histogram()
+```
+
+## Row {height=40%}
+
+```{r}
+#| title: Gráfico 2
+#| layout-ncol: 2
+
+dados_starwars |> 
+  ggplot(aes(x = altura)) +
+  geom_histogram()
+
+dados_starwars |> 
+  ggplot(aes(x = massa)) +
+  geom_histogram()
+```
+
+
+## Row
+
+::: {.card title="Apenas texto"}
+
+Texto texto texto
+
+:::
+
+## Row
+
+### {.sidebar}
+
+```{r}
+shiny::sliderInput(
+  "altura_max2", 
+  "Altura máxima",
+  min = 0,
+  max = 300,
+  value = 200
+)
+```
+
+::: {.card title="Texto e sidebar"}
+
+txt txt txt
+
+:::
+
+
+## Row
+
+```{r}
+#| title: Mapa 1
+#| padding: 0px
+leaflet::leaflet() |> 
+  leaflet::addTiles()
+```
+
+
+
+# Página 2 {scrolling="false"}
+
+## {.sidebar}
+
+```{r}
+shiny::sliderInput(
+  "altura_max", 
+  "Altura máxima",
+  min = 0,
+  max = 300,
+  value = 200
+)
+```
+
+## Row {height=60%}
+
+```{r}
+#| title: Gráfico 1
+
+dados_starwars |> 
+  ggplot(aes(x = altura, y = massa)) +
+  geom_point(colour = "red")
+```
+
+## Row {.tabset}
+
+```{r}
+#| title: Gráfico 2
+#| padding: 0px
+
+dados_starwars |> 
+  ggplot(aes(x = altura)) +
+  geom_histogram(fill = "royalblue")
+```
+
+```{r}
+#| title: Gráfico 3
+#| padding: 0px
+
+dados_starwars |> 
+  ggplot(aes(x = massa)) +
+  geom_histogram(fill = "royalblue")
+```
+
+::: {.tabset-item title="Apenas texto"}
+
+Texto texto texto
+
+:::
