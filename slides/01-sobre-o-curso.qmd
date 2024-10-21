@@ -120,27 +120,10 @@ knitr::include_graphics(c("https://github.com/allisonhorst/stats-illustrations/b
 
 - **Não existe dúvida idiota**.
  
-- Nem sempre é trivial fazer a pergunta certa para que outra pessoa esclareça a sua dúvida. Neste curso, **vamos mostrar melhores práticas na hora de fazer perguntas sobre programação**.
+- Nem sempre é trivial fazer a pergunta certa para que outra pessoa esclareça a sua dúvida. [Confira aqui algumas sugestões de como fazer boas perguntas.](https://livro.curso-r.com/3-1-pedindo-ajuda.html)
  
 - Fora do horário de aula ou monitoria:
   - perguntas gerais sobre o curso deverão ser feitas no Classroom.
-  - perguntas sobre R, principalmente as que envolverem código, deverão ser enviadas no [nosso discourse](https://discourse.curso-r.com/). Se envolver web scraping, é importante especificar a página que está querendo acessar e como você faria para encontrá-la manualmente.
-
-- [Veja aqui dicas de como fazer uma boa pergunta](https://discourse.curso-r.com/t/como-escrever-uma-boa-pergunta/542).
-
-
-## Por que usar o discourse?
-
-- Muito melhor para escrever textos que possuem códigos. Com ele, podemos usar o pacote `{reprex}`!
-
-- Saber pesquisar sobre erros e fazer a pergunta certa é essencial para aprender e resolver problemas de programação.
-
-- No discourse, teremos mais pessoas acompanhando e respondendo as dúvidas.
-
-- Em um ambiente aberto, as suas dúvidas vão contribuir com a comunidade.
-
-
-### <https://discourse.curso-r.com/>
 
 
 # Trabalho final
